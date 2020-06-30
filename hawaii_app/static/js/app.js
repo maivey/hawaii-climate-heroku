@@ -862,27 +862,17 @@ function show_2016_Data() {
                 var row = tbody1.append("tr");
                 var cell = row.append("td");
                 cell.text(startDates[i]);
-                // console.log(startDates[i])
-                // var row = tbody1.append("tr");
                 var cell = row.append("td");
                 cell.text(tMINS[i].toString());
-                // var row = tbody.append("tr");
                 var cell = row.append("td");
                 cell.text(tAVGS[i].toString());
-                // var row = tbody.append("tr");
                 var cell = row.append("td");
                 cell.text(tMAXS[i].toString());
             }
-            tbody1.selectAll('td').attr('style','font-size:20px')
+            tbody1.selectAll('td').attr('style','font-size:10px')
 
-            // traces = [
-            //     {x : startDates, y: tMINS, name : 'tMin', stackgroup:'one'},
-            //     {x : startDates, y: tAVGS, name : 'tAvg', stackgroup:'one'},
-            //     {x : startDates, y: tMAXS, name : 'tMax',stackgroup:'one'}
-            // ]
             trace1 = {
                 x: startDates.map((d,i)=> i+1),
-                // x : startDates.map(d=> new Date(new Date(d).getFullYear(),new Date(d).getMonth(),new Date(d).getDate()+1 )),
                  y: tMAXS, 
                  name : 'tMax', 
                  fill: 'tozeroy',
@@ -893,7 +883,6 @@ function show_2016_Data() {
                  }
             trace2 =   {
                 x: startDates.map((d,i)=> i+1),
-                // x : startDates.map(d=> new Date(new Date(d).getFullYear(),new Date(d).getMonth(),new Date(d).getDate()+1 )),
                 y: tAVGS,
                 name : 'tAvg',
                 fill: 'tozeroy',
@@ -903,7 +892,6 @@ function show_2016_Data() {
                 }
             trace3 = {
                 x: startDates.map((d,i)=> i+1),
-                // x : startDates.map(d=> new Date(new Date(d).getFullYear(),new Date(d).getMonth(),new Date(d).getDate()+1 )),
                 y: tMINS,
                 name : 'tMin',
                 fill: 'tozeroy',
@@ -954,17 +942,17 @@ function show_2016_Data() {
             cell.text(temp[i][0].toString());
             myYears.push(temp[i][0])
             // console.log(temp[i][0])
-            // var row = tbody.append("tr");
+          
             var cell = row.append("td");
             cell.text(temp[i][1][0][0].toString());
             mins.push(temp[i][1][0][0])
             // console.log(temp[i][1][0][0])
-            // var row = tbody.append("tr");
+            
             var cell = row.append("td");
             cell.text(Number.parseFloat(temp[i][1][0][1]).toFixed(2).toString());
             avgs.push(Number.parseFloat(temp[i][1][0][1]).toFixed(2))
             // console.log(temp[i][1][0][1])
-            // var row = tbody.append("tr");
+         
             var cell = row.append("td");
             cell.text(temp[i][1][0][2].toString());
             maxs.push(temp[i][1][0][2])
