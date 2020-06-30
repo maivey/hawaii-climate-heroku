@@ -22,8 +22,6 @@ from flask import request
 
 from flask_sqlalchemy import SQLAlchemy
 
-# from models.py import Measurement, Station
-
 # Check if input date is a valid date
 def validate_date(date):
     try:
@@ -54,51 +52,21 @@ def check_order(start,end):
 # db = SQLAlchemy(app)
 
 # Database setup
-# engine = create_engine("sqlite:///Resources/hawaii.sqlite")
-# # reflect an existing database into a new model
-# Base = automap_base()
-# # reflect the tables
-# Base.prepare(engine, reflect=True)
+engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(engine, reflect=True)
 
-# Measurement = Base.classes.measurement
-# Station = Base.classes.station
+Measurement = Base.classes.measurement
+Station = Base.classes.station
 
 
 
 #Flask Setup:
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Resources/hawaii.sqlite"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
-# MODELS.PY
-class Measurement(db.Model):
-    __tablename__ = 'measurement'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64))
-    date = db.Column(db.String(64))
-    prcp = db.Column(db.Float)
-    tobs= db.Column(db.Float)
-
-
-    def __repr__(self):
-        return '<Measurement %r>' % (self.name)
-
-class Station(db.Model):
-    __tablename__ = 'station'
-
-    id = db.Column(db.Integer, primary_key=True)
-    station = db.Column(db.String(64))
-    name = db.Column(db.String(64))
-    latitude = db.Column(db.Float)
-    longitude= db.Column(db.Float)
-    elevation = db.Column(db.Float)
-
-
-    def __repr__(self):
-        return '<Station %r>' % (self.name)
-
 #Routes:
 # /
     #Home page
@@ -111,26 +79,24 @@ def main():
     # if request.form["btn"]=="Show Data":
         if request.method == 'POST':
             # Create our session (link) from Python to the DB
-            # session = Session(engine)
+            session = Session(engine)
             # Convert the query results to a Dictionary using date as the key and prcp as the value.
             # Perform a query to retrieve the data and precipitation scores
             ###########
             # db.session.query()
-            # msmt_test = db.session.query(Measurement).\
-            #         order_by(Measurement.date.desc())\
-            #         .first()
-            msmt_test = db.session.query(Measurement.date).order_by(Measurement.date.desc()).first()
-
+            msmt_test = session.query(Measurement).\
+                    order_by(Measurement.date.desc())\
+                    .first()
             last_test = pd.to_datetime(msmt_test.date)
             first_test = last_test - timedelta(days=365)
             first_date = dt.date(first_test.year, first_test.month, first_test.day)
             last_date = dt.date(last_test.year, last_test.month, last_test.day)
 
-            msmt_year = db.session.query(Measurement.date,Measurement.prcp).\
+            msmt_year = session.query(Measurement.date,Measurement.prcp).\
                 filter(Measurement.date >= first_date).\
                 order_by(Measurement.date.asc()).\
                 all()
-            # session.close()
+            session.close()
 
             precip_data = []
             for date, prcp in msmt_year:
@@ -184,9 +150,9 @@ def main():
     if request.form["btn"]=="stations":
         if request.method == 'POST':
             # Create our session (link) from Python to the DB
-            # session = Session(engine)
+            session = Session(engine)
             # Return a JSON list of stations from the dataset.
-            station_count = db.session.query(Measurement.station).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
+            station_count = session.query(Measurement.station).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
             station_list = list(np.ravel(station_count))
             all_station_count = len(station_list)
 
@@ -202,25 +168,25 @@ def main():
         if request.method == 'POST':
             # query for the dates and temperature observations from a year from the last data point.
             session = Session(engine)
-            top_station = db.session.query(Measurement.station, func.count(Measurement.station)).\
+            top_station = session.query(Measurement.station, func.count(Measurement.station)).\
                 group_by(Measurement.station).\
                     order_by(func.count(Measurement.station).desc()).\
                         first().station
-            msmt_test = db.session.query(Measurement.date).\
+            msmt_test = session.query(Measurement).\
                     order_by(Measurement.date.desc()).\
                     first()
             last_test = pd.to_datetime(msmt_test.date)
             first_test = last_test - timedelta(days=365)
             first_date = dt.date(first_test.year, first_test.month, first_test.day)
 
-            tobs_response = db.session.query(Measurement.date,Measurement.tobs).\
+            tobs_response = session.query(Measurement.date,Measurement.tobs).\
                 filter(Measurement.date >= first_date).\
                 filter(Measurement.station == top_station).\
                 order_by(Measurement.date.asc()).\
                 all()
             tobs_list = list(np.ravel(tobs_response))
             
-            # session.close()
+            session.close()
             # Return a JSON list of Temperature Observations (tobs) for the previous year.
             # return jsonify(tobs_list)
             return flask.render_template('index.html', myTOBS = tobs_list)
@@ -241,8 +207,8 @@ def main():
             else:
                 print(start)
                 # Create our session (link) from Python to the DB
-                # session = Session(engine)
-                msmt_test = db.session.query(Measurement.date).\
+                session = Session(engine)
+                msmt_test = session.query(Measurement).\
                         order_by(Measurement.date.desc())\
                         .first()
                 last_test = pd.to_datetime(msmt_test.date)
@@ -261,14 +227,14 @@ def main():
                     '''
                 
                     sel = [Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
-                    norms = db.session.query(*sel).filter(func.strftime("%Y-%m-%d", Measurement.date) == start_date).all()
+                    norms = session.query(*sel).filter(func.strftime("%Y-%m-%d", Measurement.date) == start_date).all()
                     return(norms)
 
                 normals= []
                 for date in date_list:
                     normals.append(daily_normals(date))
                 # Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-                # session.close()
+                session.close()
                 return flask.render_template('index.html',
                             myStart = start,
                             myNormals = normals)
@@ -309,7 +275,7 @@ def main():
                                             endOver = True)
             else:
                 # Create our session (link) from Python to the DB
-                # session = Session(engine)
+                session = Session(engine)
 
                 time_btw = pd.to_datetime(end) - pd.to_datetime(start)
                 print(time_btw)
@@ -329,31 +295,52 @@ def main():
                     '''
                 
                     sel = [Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
-                    norms = db.session.query(*sel).filter(func.strftime("%Y-%m-%d", Measurement.date) == start_date).all()
+                    norms = session.query(*sel).filter(func.strftime("%Y-%m-%d", Measurement.date) == start_date).all()
                     return(norms)
 
                 normals= []
                 for date in date_list:
                     normals.append(daily_normals(date))
                 # Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-                # session.close()
+                session.close()
                 return flask.render_template('index.html',
                                 myStart = start,
                                 myEnd = end,
                                 myNormalsStartEnd = normals)
+            # return jsonify(normals)
+            # return jsonify(normals)
 
 
+            # return(jsonify(station_list))
+
+    # return(
+    #     f"<div align='center'><h1>Welcome to my Hawaii Climate App</h1><br/></div>"
+    #     f"<hr><br/>"
+    #     f"<h2>Available routes:</h2><br/>"
+    #     f"<ul>"
+    #     f"<li><h4>A dictionary of the last 12 months of precipitation data:</h4></li>"
+    #     f"/api/v1.0/precipitation<br/>"
+    #     f"<li><h4>A list of all available stations:</h4></li>"
+    #     f"/api/v1.0/stations<br/>"
+    #     f"<li><h4>A list of  Temperature Observations (tobs) for the previous year:</h4></li>"
+    #     f"/api/v1.0/tobs<br/>"
+    #     f"<li><h4>A list of the minimum temperature, the average temperature, and the max temperature for all dates greater or equal to YYYY-mm-dd (example year: 2015-03-01):</h4></li>"
+    #     f"/api/v1.0/2015-03-01<br/>"
+    #     f"<li><h4>A list of the minimum temperature, the average temperature, and the max temperature for dates between the start and end date inclusive, formatted YYYY-mm-dd (example range: 2015-03-01 to 2016-09-06):</h4></li>"
+    #     f"/api/v1.0/2015-03-01/2016-09-06"
+    #     f"</ul>"
+    # )
 
 #/api/v1.0/precipitation
 @app.route("/api/v1.0/precipitation")
 def precipitation():
 
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
+    session = Session(engine)
     # Convert the query results to a Dictionary using date as the key and prcp as the value.
     # Perform a query to retrieve the data and precipitation scores
 
-    msmt_test = db.session.query(Measurement.date).\
+    msmt_test = session.query(Measurement).\
             order_by(Measurement.date.desc())\
             .first()
     last_test = pd.to_datetime(msmt_test.date)
@@ -361,11 +348,11 @@ def precipitation():
     first_date = dt.date(first_test.year, first_test.month, first_test.day)
     last_date = dt.date(last_test.year, last_test.month, last_test.day)
 
-    msmt_year = db.session.query(Measurement.date,Measurement.prcp).\
+    msmt_year = session.query(Measurement.date,Measurement.prcp).\
         filter(Measurement.date >= first_date).\
         order_by(Measurement.date.asc()).\
         all()
-    # session.close()
+    session.close()
 
     precip_data = []
     for date, prcp in msmt_year:
@@ -383,33 +370,33 @@ def precipitation():
 @app.route("/api/v1.0/stations")
 def stations():
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
+    session = Session(engine)
     # Return a JSON list of stations from the dataset.
-    station_count = db.session.query(Measurement.station).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
+    station_count = session.query(Measurement.station).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
     station_list = list(np.ravel(station_count))
-    # session.close()
+    session.close()
     return(jsonify(station_list))
 
 @app.route("/api/v1.0/station_counts")
 def stationCounts():
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
+    session = Session(engine)
     # Return a JSON list of stations and station counts from the dataset.
-    station_count = db.session.query(Measurement.station, func.count(Measurement.station)).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
+    station_count = session.query(Measurement.station, func.count(Measurement.station)).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
     station_count = {station: count for station, count in station_count}
     # station_count = session.query(Measurement.station).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
     # station_list = list(np.ravel(station_count))
-    # session.close()
+    session.close()
     return(jsonify(station_count))
 
 @app.route("/api/v1.0/top_station")
 def topStation():
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
+    session = Session(engine)
 
     # What are the most active stations? (i.e. what stations have the most rows)?
     # List the stations and the counts in descending order.
-    station_count = db.session.query(Measurement.station, func.count(Measurement.station)).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
+    station_count = session.query(Measurement.station, func.count(Measurement.station)).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
     station_count = {station: count for station, count in station_count}
     # station_count
     station_list = list(station_count)
@@ -417,25 +404,25 @@ def topStation():
 
     # Using the station id from the previous query, calculate the lowest temperature recorded, 
     # highest temperature recorded, and average temperature most active station?
-    top_station_temps = db.session.query(func.min(Measurement.tobs),func.max(Measurement.tobs),func.avg(Measurement.tobs)).filter(Measurement.station == top_station).all()
+    top_station_temps = session.query(func.min(Measurement.tobs),func.max(Measurement.tobs),func.avg(Measurement.tobs)).filter(Measurement.station == top_station).all()
 
     top_station_low, top_station_high, top_station_avg = top_station_temps[0]
 
-    # session.close()
+    session.close()
     return(jsonify(top_station, top_station_low, top_station_high, top_station_avg))
 
 @app.route("/api/v1.0/top_station_tobs")
 def topStationTOBS():
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
-    msmt_test = db.session.query(Measurement.date).\
+    session = Session(engine)
+    msmt_test = session.query(Measurement).\
             order_by(Measurement.date.desc())\
             .first()
     last_test = pd.to_datetime(msmt_test.date)
     first_test = last_test - timedelta(days=365)
     first_date = dt.date(first_test.year, first_test.month, first_test.day)
     last_date = dt.date(last_test.year, last_test.month, last_test.day)
-    station_count = db.session.query(Measurement.station, func.count(Measurement.station)).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
+    station_count = session.query(Measurement.station, func.count(Measurement.station)).group_by(Measurement.station).order_by(func.count(Measurement.station).desc()).all()#.distinct(Station.station).count()#group_by(Station.station).all()
     station_count = {station: count for station, count in station_count}
     # station_count
     station_list = list(station_count)
@@ -443,13 +430,18 @@ def topStationTOBS():
 
     # Choose the station with the highest number of temperature observations.
 # Query the last 12 months of temperature observation data for this station and plot the results as a histogram
-    temp_year = db.session.query(Measurement.date,Measurement.tobs).filter(Measurement.date >= first_date).filter(Measurement.date <= last_date).filter(Measurement.station == top_station).all()
+    temp_year = session.query(Measurement.date,Measurement.tobs).filter(Measurement.date >= first_date).filter(Measurement.date <= last_date).filter(Measurement.station == top_station).all()
     temp_dict = {station: count for station, count in temp_year}
 
     # Save the query results as a Pandas DataFrame and set the index to the date column
+    # temp_year_df = pd.DataFrame(temp_year,columns=['Date','TOBS'])
+    # temp_year_df = temp_year_df.set_index('Date')
 
+    # # Sort the dataframe by date
+    # temp_year_df.sort_values(by='Date')
+    # temp_dict = dict(temp_year_df)
 
-    # session.close()
+    session.close()
     return(jsonify(temp_dict))
 
 
@@ -457,26 +449,26 @@ def topStationTOBS():
 @app.route("/api/v1.0/tobs")
 def tobs():
     # query for the dates and temperature observations from a year from the last data point.
-    # session = Session(engine)
-    top_station = db.session.query(Measurement.station, func.count(Measurement.station)).\
+    session = Session(engine)
+    top_station = session.query(Measurement.station, func.count(Measurement.station)).\
         group_by(Measurement.station).\
             order_by(func.count(Measurement.station).desc()).\
                 first().station
-    msmt_test = db.session.query(Measurement.date).\
+    msmt_test = session.query(Measurement).\
             order_by(Measurement.date.desc()).\
             first()
     last_test = pd.to_datetime(msmt_test.date)
     first_test = last_test - timedelta(days=365)
     first_date = dt.date(first_test.year, first_test.month, first_test.day)
 
-    tobs_response = db.session.query(Measurement.date,Measurement.tobs).\
+    tobs_response = session.query(Measurement.date,Measurement.tobs).\
         filter(Measurement.date >= first_date).\
         filter(Measurement.station == top_station).\
         order_by(Measurement.date.asc()).\
         all()
     tobs_list = list(np.ravel(tobs_response))
     
-    # session.close()
+    session.close()
     # Return a JSON list of Temperature Observations (tobs) for the previous year.
     return jsonify(tobs_list)
 
@@ -485,8 +477,8 @@ def tobs():
 @app.route("/api/v1.0/<start>")
 def start_tobs(start):
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
-    msmt_test = db.session.query(Measurement.date).\
+    session = Session(engine)
+    msmt_test = session.query(Measurement).\
             order_by(Measurement.date.desc())\
             .first()
     last_test = pd.to_datetime(msmt_test.date)
@@ -507,14 +499,14 @@ def start_tobs(start):
         '''
     
         sel = [Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
-        norms = db.session.query(*sel).filter(func.strftime("%Y-%m-%d", Measurement.date) == start_date).all()
+        norms = session.query(*sel).filter(func.strftime("%Y-%m-%d", Measurement.date) == start_date).all()
         return(norms)
 
     normals= []
     for date in date_list:
         normals.append(daily_normals(date))
     # Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-    # session.close()
+    session.close()
     return jsonify(normals)
     
 
@@ -522,7 +514,7 @@ def start_tobs(start):
 @app.route("/api/v1.0/<start>/<end>")
 def start_end(start,end):
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
+    session = Session(engine)
 
     time_btw = pd.to_datetime(end) - pd.to_datetime(start)
 
@@ -541,14 +533,14 @@ def start_end(start,end):
         '''
     
         sel = [Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
-        norms = db.session.query(*sel).filter(func.strftime("%Y-%m-%d", Measurement.date) == start_date).all()
+        norms = session.query(*sel).filter(func.strftime("%Y-%m-%d", Measurement.date) == start_date).all()
         return(norms)
 
     normals= []
     for date in date_list:
         normals.append(daily_normals(date))
     # Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-    # session.close()
+    session.close()
     return jsonify(normals)
 
 @app.route("/graphs", methods=['GET','POST'])
@@ -611,11 +603,11 @@ def trip_norm_prev_year(start,end):
         Returns:
             TMIN, TAVE, and TMAX
         """
-        return db.session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        return session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
             filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
 
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
+    session = Session(engine)
     start_year = int(start[0:4])
     start_date = start[4:]
     end_year = int(end[0:4])
@@ -634,13 +626,13 @@ def trip_norm_prev_year(start,end):
     prev_year_dict['Normals']=calc_temps(prev_year_start_str, prev_year_end_str)
     # return prev_year_dict
     # Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-    # session.close()
+    session.close()
     return jsonify(prev_year_dict)
 
 @app.route("/trip_norm_each_year/<start>/<end>")
 def trip_norm_each_year(start,end):
     # Create our session (link) from Python to the DB
-    # session = Session(engine)
+    session = Session(engine)
     def calc_temps(start_date, end_date):
         """TMIN, TAVG, and TMAX for a list of dates.
         
@@ -652,7 +644,7 @@ def trip_norm_each_year(start,end):
             TMIN, TAVE, and TMAX
         """
         
-        return db.session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        return session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
             filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
 
 
@@ -695,12 +687,12 @@ def trip_norm_each_year(start,end):
             if int(new_start_dates[i][0:4]) <=2017:
                 date_dict[new_start_dates[i][0:4]]=calc_temps(new_start_dates[i],new_end_dates[i])
         # return jsonify(date_dict)
-    # session.close()
+    session.close()
     return jsonify(date_dict)
 
 @app.route("/rainfall/<start>/<end>")
 def rainfall(start,end):
-    # session = Session(engine)
+    session = Session(engine)
     start_year = int(start[0:4])
     start_date = start[4:]
     end_year = int(end[0:4])
@@ -710,9 +702,9 @@ def rainfall(start,end):
     my_first_date = str(new_start_year)+start_date
     my_last_date = str(new_end_year)+end_date
 
-    total_rain = db.session.query(Measurement.station,func.sum(Measurement.prcp)).filter(Measurement.date >= my_first_date).filter(Measurement.date <= my_last_date).group_by(Measurement.station).order_by(func.sum(Measurement.prcp).desc()).all()
+    total_rain = session.query(Measurement.station,func.sum(Measurement.prcp)).filter(Measurement.date >= my_first_date).filter(Measurement.date <= my_last_date).group_by(Measurement.station).order_by(func.sum(Measurement.prcp).desc()).all()
 
-    total_rain_all = db.session.query(Measurement.station,Station.name,Station.latitude,Station.longitude,Station.elevation, func.sum(Measurement.prcp))\
+    total_rain_all = session.query(Measurement.station,Station.name,Station.latitude,Station.longitude,Station.elevation, func.sum(Measurement.prcp))\
                     .filter(Measurement.date >= my_first_date)\
                     .filter(Measurement.date <= my_last_date)\
                     .filter(Measurement.station == Station.station)\
@@ -722,12 +714,12 @@ def rainfall(start,end):
     total_rain_df = pd.DataFrame(total_rain_all, columns=['Station','Name','Lat','Lon','Elevation','Total Amount of Rainfall'])
     total_rain_df['Total Amount of Rainfall']=total_rain_df['Total Amount of Rainfall'].map(lambda x: round(x,3))
     total_rain_dict = total_rain_df.to_dict(orient='records')
-    # session.close()
+    session.close()
     return jsonify(total_rain_dict)
 
 @app.route("/rainfall_last_year/<start>/<end>")
 def daily_rain(start,end):
-    # session = Session(engine)
+    session = Session(engine)
     start_year = int(start[0:4])
     start_date = start[4:]
     end_year = int(end[0:4])
@@ -737,7 +729,7 @@ def daily_rain(start,end):
     my_first_date = str(new_start_year)+start_date
     my_last_date = str(new_end_year)+end_date
 
-    msmt_year = db.session.query(Measurement.date,Measurement.prcp)\
+    msmt_year = session.query(Measurement.date,Measurement.prcp)\
         .filter(Measurement.date >= my_first_date)\
       .filter(Measurement.date <= my_last_date)\
         .order_by(Measurement.date.asc()).all()
@@ -750,7 +742,7 @@ def daily_rain(start,end):
     for date,prcp in msmt_year:
         d[date].append(prcp)
     precip_dict_defaultdict = dict(d)
-    # session.close()
+    session.close()
 
     return jsonify(precip_dict_defaultdict)
 
