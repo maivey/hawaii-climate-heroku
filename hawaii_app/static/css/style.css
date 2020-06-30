@@ -273,6 +273,12 @@
 #startDate_end {
     font-size:10px;
 };
+#start_trip {
+    font-size:10px;
+};
+#end_trip {
+    font-size:10px;
+};
 
 }
  
@@ -320,6 +326,12 @@
 #startDate_end {
     font-size:10px;
 };
+#start_trip {
+    font-size:10px;
+};
+#end_trip {
+    font-size:10px;
+};
 }
 
 
@@ -364,6 +376,12 @@
     font-size:10px;
 };
 #startDate_end {
+    font-size:10px;
+};
+#start_trip {
+    font-size:10px;
+};
+#end_trip {
     font-size:10px;
 };
 }
