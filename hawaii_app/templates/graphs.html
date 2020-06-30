@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Hawaii Climate Analysis - Trip</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <!-- ************  PANELS ************ -->
+  <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+  <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ <!-- ************  END PANELS ************ -->
+  <style>
+      #table-area th {
+        text-align: left;
+      }
+      /* #table-area th {
+        min-width : 70px;
+      } */
+
+      #table-area th:first-child,
+      #table-area th:nth-child(2),
+      #table-area th:nth-child(3),
+      #table-area th:nth-child(4),
+      #table-area th:nth-child(5),
+      #table-area th:nth-child(6),
+      #table-area th:nth-child(7),
+      #table-area th:nth-child(8)  {
+        min-width: 50px;
+        max-width:100px;
+      }
+  </style>
+  <!-- <style>
+    .result_paragraph p {
+      font-size:18pt;
+    }
+    
+  </style> -->
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Hawaii Climate App
+            <img class="nav-ufo">
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div id= "myHeader">
+      <div class="hero text-center">      
+        <h1>Let's explore Hawaii Climate Data!</h1>
+      </div>
+  </div>
+
+  <div class="container">
+    <div class="row margin-top-50">
+      <div class="col-md-12 col-lg-12">
+        <h1 style="text-align: center;">Choose to either explore climate data for Hawaii or get climate predictions for your trip to Hawaii below</h1>
+        <br>
+        <br>
+        <!-- <div class="col-md-6"> -->
+          <div class="panel with-nav-tabs panel-default">
+              <div class="panel-heading">
+                    <ul class="nav nav-pills">
+                        <li style='font-size:30px'><a href="/" data-toggle="tab">Filter Search</a></li>
+                        <li style='font-size:30px' class="active"><a href="/graphs" data-toggle="tab">Filter Search for Your Trip to Hawaii!</a></li>
+                    </ul>
+              </div>
+              <div class="panel-body">
+                  <div class="tab-content">
+                      <div class="tab-pane fade in active" id="home">
+                        <form action = "{{ url_for('graphs', _anchor='element_target') }}" method="POST">
+                            <div class="form-group">
+
+                              <!-- TRIP CALCULATIONS -->
+                            {% if wrongDate_both %}
+                              <!-- WRONG INPUT FOR TRIP CALCULATIONS -->
+                              <ul class="list-group" id="filters">
+                                <li class="filter list-group-item">
+                                  <h3>Enter the date range of your trip to Hawaii to explore expected temperature and rainfall for your trip</h3>
+                                  <br>
+                                  <div class='row'>
+                                    <div class='col-md-2'>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "start_trip" for="start_trip">Start Date : </label>
+                                      <br>
+                                      <br>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "end_trip" for="end_trip">End Date : </label>
+          
+                                    </div>
+          
+                                    <div class='col-md-7'>
+                                      <input name = "start_trip" class="form-control" id="start_trip" type="text" placeholder="2017-03-25">
+                                      <br>
+                                      <input name = "end_trip" class="form-control" id="end_trip" type="text" placeholder="2017-04-01">
+                                    </div>
+                                    <div class='col-md-2'>
+                                      <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "start_trip">Filter Search</button>
+                                    </div>
+                                </div>
+                                <!-- ERROR MESSAGE -->
+                                <div class='row'>
+                                  <div class='col-md-2'>
+                                    <p style='color:rgb(216, 76, 76)'> </p>
+        
+                                  </div>
+                                  <div class='col-md-7'>
+        
+                                    <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter a valid start and end date (Format : YYYY-MM-DD)</p>
+                                    <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+                                  </div>
+                                </div>
+                                <!-- END ERROR MESSAGE -->
+                                  <br>
+                                </li>
+                              </ul>
+                            </div>
+                        </form>
+                      </div> <!-- ENDS <div class="tab-pane fade in active" id="home"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- ENDS div class container -->
+                              {% elif wrongDate_start %}
+                              <ul class="list-group" id="filters">
+                                <li class="filter list-group-item">
+                                  <h3>Enter the date range of your trip to Hawaii to explore expected temperature and rainfall for your trip</h3>
+                                  <br>
+                                  <div class='row'>
+                                    <div class='col-md-2'>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "start_trip" for="start_trip">Start Date : </label>
+                                      <br>
+                                      <br>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "end_trip" for="end_trip">End Date : </label>
+          
+                                    </div>
+          
+                                    <div class='col-md-7'>
+                                      <input name = "start_trip" class="form-control" id="start_trip" type="text" placeholder="2017-03-25">
+                                      <br>
+                                      <input name = "end_trip" class="form-control" id="end_trip" type="text" placeholder="2017-04-01">
+                                    </div>
+                                    <div class='col-md-2'>
+                                      <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "start_trip">Filter Search</button>
+                                    </div>
+                                </div>
+                                <div class='row'>
+                                  <div class='col-md-2'>
+                                    <p style='color:rgb(216, 76, 76)'> </p>
+        
+                                  </div>
+                                  <div class='col-md-7'>
+        
+                                    <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter a valid start date (Format : YYYY-MM-DD)</p>
+                                    <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+                                  </div>
+                                </div>
+                                  <br>
+                                </li>
+                              </ul>
+                            </div>
+                        </form>
+                      </div> <!-- ENDS <div class="tab-pane fade in active" id="home"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- ENDS div class container -->
+                              {% elif wrongDate_end %}
+                                <ul class="list-group" id="filters">
+                                  <li class="filter list-group-item">
+                                    <h3>Enter the date range of your trip to Hawaii to explore expected temperature and rainfall for your trip</h3>
+                                    <br>
+                                    <div class='row'>
+                                      <div class='col-md-2'>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "start_trip" for="start_trip">Start Date : </label>
+                                        <br>
+                                        <br>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "end_trip" for="end_trip">End Date : </label>
+            
+                                      </div>
+            
+                                      <div class='col-md-7'>
+                                        <input name = "start_trip" class="form-control" id="start_trip" type="text" placeholder="2017-03-25">
+                                        <br>
+                                        <input name = "end_trip" class="form-control" id="end_trip" type="text" placeholder="2017-04-01">
+                                      </div>
+                                      <div class='col-md-2'>
+                                        <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "start_trip">Filter Search</button>
+                                      </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-md-2'>
+                                      <p style='color:rgb(216, 76, 76)'> </p>
+          
+                                    </div>
+                                    <div class='col-md-7'>
+          
+                                      <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter a valid end date (Format : YYYY-MM-DD)</p>
+                                      <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+                                    </div>
+                                  </div>
+                                    <br>
+                                  </li>
+                                </ul>
+                            </div>
+                        </form>
+                      </div> <!-- ENDS <div class="tab-pane fade in active" id="home"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- ENDS div class container -->
+                              {% elif wrongOrder %}
+                                <ul class="list-group" id="filters">
+                                  <li class="filter list-group-item">
+                                    <h3>Enter the date range of your trip to Hawaii to explore expected temperature and rainfall for your trip</h3>
+                                    <br>
+                                    <div class='row'>
+                                      <div class='col-md-2'>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "start_trip" for="start_trip">Start Date : </label>
+                                        <br>
+                                        <br>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "end_trip" for="end_trip">End Date : </label>
+                                      </div>
+                                      <div class='col-md-7'>
+                                        <input name = "start_trip" class="form-control" id="start_trip" type="text" placeholder="2017-03-25">
+                                        <br>
+                                        <input name = "end_trip" class="form-control" id="end_trip" type="text" placeholder="2017-04-01">
+                                      </div>
+                                      <div class='col-md-2'>
+                                        <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "start_trip">Filter Search</button>
+                                      </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-md-2'>
+                                      <p style='color:rgb(216, 76, 76)'> </p>
+                                    </div>
+                                    <div class='col-md-7'>
+                                      <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter an end date prior to the start date.</p>
+          
+                                      <!-- <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter a valid end date (Format : YYYY-MM-DD)</p> -->
+                                    </div>
+                                  </div>
+                                    <br>
+                                  </li>
+                                </ul>
+                            </div>
+                        </form>
+                      </div> <!-- ENDS <div class="tab-pane fade in active" id="home"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- ENDS div class container -->
+                              {% elif bothUnder %}
+                                <ul class="list-group" id="filters">
+                                  <li class="filter list-group-item">
+                                    <h3>Enter the date range of your trip to Hawaii to explore expected temperature and rainfall for your trip</h3>
+                                    <br>
+                                    <div class='row'>
+                                      <div class='col-md-2'>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "start_trip" for="start_trip">Start Date : </label>
+                                        <br>
+                                        <br>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "end_trip" for="end_trip">End Date : </label>
+                                      </div>
+                                      <div class='col-md-7'>
+                                        <input name = "start_trip" class="form-control" id="start_trip" type="text" placeholder="2017-03-25">
+                                        <br>
+                                        <input name = "end_trip" class="form-control" id="end_trip" type="text" placeholder="2017-04-01">
+                                      </div>
+                                      <div class='col-md-2'>
+                                        <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "start_trip">Filter Search</button>
+                                      </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-md-2'>
+                                      <p style='color:rgb(216, 76, 76)'> </p>
+                                    </div>
+                                    <div class='col-md-7'>
+                                      <p style='font-weight:bold; color:rgb(240, 142, 142)'>The data only goes back to 2010-01-01. Please enter a valid start and end date after 2010-01-01.</p>
+          
+                                    </div>
+                                  </div>
+                                    <br>
+                                  </li>
+                                </ul>
+                            </div>
+                        </form>
+                      </div> <!-- ENDS <div class="tab-pane fade in active" id="home"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- ENDS div class container -->
+                              {% elif startUnder %}
+                                <ul class="list-group" id="filters">
+                                  <li class="filter list-group-item">
+                                    <h3>Enter the date range of your trip to Hawaii to explore expected temperature and rainfall for your trip</h3>
+                                    <br>
+                                    <div class='row'>
+                                      <div class='col-md-2'>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "start_trip" for="start_trip">Start Date : </label>
+                                        <br>
+                                        <br>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "end_trip" for="end_trip">End Date : </label>
+                                      </div>
+                                      <div class='col-md-7'>
+                                        <input name = "start_trip" class="form-control" id="start_trip" type="text" placeholder="2017-03-25">
+                                        <br>
+                                        <input name = "end_trip" class="form-control" id="end_trip" type="text" placeholder="2017-04-01">
+                                      </div>
+                                      <div class='col-md-2'>
+                                        <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "start_trip">Filter Search</button>
+                                      </div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-md-2'>
+                                      <p style='color:rgb(216, 76, 76)'> </p>
+                                    </div>
+                                    <div class='col-md-7'>
+                                      <p style='font-weight:bold; color:rgb(240, 142, 142)'>The data only goes back to 2010-01-01. Please enter a valid start date after 2010-01-01.</p>
+                                      <!-- <p style='font-weight:bold; color:rgb(240, 142, 142)'>The data only goes back to 2010-01-01. Please enter a valid start and end date after 2010-01-01.</p> -->
+          
+                                    </div>
+                                  </div>
+                                    <br>
+                                  </li>
+                                </ul>
+                            </div>
+                        </form>
+                      </div> <!-- ENDS <div class="tab-pane fade in active" id="home"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- ENDS div class container -->
+                            {% elif ask_2016 %}
+                                <ul class="list-group" id="filters">
+                                    <li class="filter list-group-item">
+                                    <h3>Enter the date range of your trip to Hawaii to explore expected temperature and rainfall for your trip</h3>
+                                    <br>
+                                    <div class='row'>
+                                        <div class='col-md-2'>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "start_trip" for="start_trip">Start Date : </label>
+                                        <br>
+                                        <br>
+                                        <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "end_trip" for="end_trip">End Date : </label>
+                                        </div>
+                                        <div class='col-md-7'>
+                                        <input name = "start_trip" class="form-control" id="start_trip" type="text" placeholder="2017-03-25">
+                                        <br>
+                                        <input name = "end_trip" class="form-control" id="end_trip" type="text" placeholder="2017-04-01">
+                                        </div>
+                                        <div class='col-md-2'>
+                                        <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "start_trip">Filter Search</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                      </div> <!-- ENDS <div class="tab-pane fade in active" id="home"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- ENDS div class container -->
+                                    <div class='container container-fluid'>
+                                        <div class="row justify-content-center">
+                                          <div class="col-md-12" id="element_target">
+                                              <h1 style="color:#df691a; text-align:center; background-color:#364453; padding:20px" id = "currentPage" class="text-info">YOUR TRIP DATES: <span style='color:whitesmoke'> {{ myStart }}</span> to <span style='color:whitesmoke'>{{ myEnd }} </span></h1>
+                                              <h2 id= "is2016" style = "text-align:center; color: rgb(240, 142, 142)" class="text-info">Unfortunately, the last date of the dataset is 2017-08-23.</h2>
+                                              <h2 style = "text-align:center; color: rgb(240, 142, 142)" class="text-info"> Would you like to see predictions based on 2016 data?</h2>
+                                              <div class="row justify-content-center">
+                                                <div class='col-md-4'></div>
+                                                <div class='col-md-4 text-center'>
+                                                  <!-- <form action = "{{ url_for('graphs', _anchor='element_target') }}">
+                                                    <div class="form-group"> -->
+                                                      <button onclick="show_2016_Data()" style= "margin-top:25px; font-size:20px;" id="filter-btn" class="btn btn-default" name = "btn" value = "get2016">Show 2016 Data</button>
+                                                    <!-- </div>
+                                                  </form> -->
+                                                  <br>
+                                                  <br>
+                                                </div>
+                                                <div class='col-md-4'></div>
+                                              </div>
+                                              
+                                          </div>
+                                        </div>
+                                        </div>
+                                    
+
+                                    
+
+                
+                              {% else %}
+                               <!-- CORRECT INPUT FOR TRIP CALCULATIONS -->
+                               <ul class="list-group" id="filters">
+                                <li class="filter list-group-item">
+                                  <h3>Enter the date range of your trip to Hawaii to explore expected temperature and rainfall for your trip</h3>
+                                  <br>
+                                  <div class='row'>
+                                    <div class='col-md-2'>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "start_trip" for="start_trip">Start Date : </label>
+                                      <br>
+                                      <br>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "end_trip" for="end_trip">End Date : </label>
+          
+                                    </div>
+          
+                                    <div class='col-md-7'>
+                                      <input name = "start_trip" class="form-control" id="start_trip" type="text" placeholder="2017-03-25">
+                                      <br>
+                                      <input name = "end_trip" class="form-control" id="end_trip" type="text" placeholder="2017-04-01">
+                                    </div>
+                                    <div class='col-md-2'>
+                                      <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "start_trip">Filter Search</button>
+                                    </div>
+                                </div>
+                                  <br>
+                                </li>
+                              </ul>
+                            </div>
+                        </form>
+                      </div> <!-- ENDS <div class="tab-pane fade in active" id="home"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- ENDS div class container -->
+                              {% endif %}
+
+        {% if my2016 %}
+        <div style="visibility: hidden;" id = "show2016data">
+            <div class='container container-fluid'>
+            
+            <div style = "background-color:#364453;" class="row justify-content-center">
+                <h1 style="color:white;text-align:center; background-color:#2a3747;padding:35px;margin-top:0px" class="text-info">TEMPERATURE OBSERVATIONS</h1>
+    
+                <div class="col-md-12">
+    
+                
+                        <h1 style = "text-align:center;background-color:#2a3747;margin-right:75%; padding:15px" class="text-info">LAST YEAR</h1>
+    
+                    <h2 id = 'past-year-dates' class = "text-info"></h2>
+                    <div class='container container-fluid'>
+    
+    
+        
+    
+                    <div style="padding:20px" class="row justify-content-center align-items-center">
+                        <div class='col-sm-1 col-md-1 col-lg-1'></div>
+                        <div id = 'past-year-1' class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'past-year-norms-1' class = "text-info"></h3>
+                        <div id="past-year-norms-1-graph"></div>
+                        </div>
+                        <div id = 'past-year-2' class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'past-year-norms-2' class = "text-info"></h3>
+                        <div id="past-year-norms-2-graph"></div>
+                        </div>
+                        <div id = "past-year-3" class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'past-year-norms-3' class = "text-info"></h3>
+                        </div>
+                        <div class='col-sm-1 col-md-1 col-lg-1'></div>
+    
+                        <!-- ENDS ROW JUSTIFY CONTENT CENTER-->
+                    </div>
+                    </div>
+                    
+                        
+                        <h3 class = "text-info">Here is a breakdown of the temperature normals during your trip for each day of last year: </h3>
+                <!-- </div> -->
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <div id="table-area" class="">
+                                <table id="ufo-table" class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th style='font-size:20px;' class="table-head">Date</th>
+                                        <th  style='font-size:20px;' class="table-head">Minimum Temperature</th>
+                                        <th  style='font-size:20px;' class="table-head">Average Temperature</th>
+                                        <th  style='font-size:20px;' class="table-head">Maximum Temperature</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id = "table-body last-year"></tbody>
+                                </table>
+                                </div>
+                            </div>
+                            </div> <!-- ENDS <div class="row justify-content-center"> -->
+                            <!-- </div> -->
+                    
+                        
+                    <!-- </div> -->
+                    <div id = 'area-chart'></div>
+                    
+                    <br>
+                    <br>
+                    <hr style='border: 1px solid #2a3747'>
+                    <br>
+                    
+                    <h1 style = "text-align:center;background-color:#2a3747;margin-right:75%; padding:15px" class="text-info">ALL YEARS</h1>
+                    <h2 id = "all-years-dates" class = "text-info"></h2>
+                    <div class='container container-fluid'>
+                        <div style="padding:20px" class="row justify-content-center align-items-center">
+                        <div class='col-sm-1 col-md-1 col-lg-1'></div>
+                            <div id = 'past-year-1' class="col-lg-3 col-md-3 col-sm-3">
+                            <h3 style="color:linen" id = 'all-year-norms-1' class = "text-info"></h3>
+                        </div>
+                            <div id = 'past-year-2' class="col-lg-3 col-md-3 col-sm-3">
+                            <h3 style="color:linen" id = 'all-year-norms-2' class = "text-info"></h3>
+                        </div>
+                            <div id = "past-year-3" class="col-lg-3 col-md-3 col-sm-3">
+                            <h3 style="color:linen" id = 'all-year-norms-3' class = "text-info"></h3>
+                        </div>
+                        <div class='col-sm-1 col-md-1 col-lg-1'></div>
+        
+                        <!-- ENDS ROW JUSTIFY CONTENT CENTER-->
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-1 col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-lg-11 col-md-11 col-sm-11">
+                        <h3 id = 'all-year-norms-1' class = "text-info"></h3>
+                        <h3 id = 'all-year-norms-2' class = "text-info"></h3>
+                        <h3 id = 'all-year-norms-3' class = "text-info"></h3>
+                        </div>
+                    </div>
+                    <br>
+    
+                    <h3 class = "text-info">Here is a breakdown of the temperature normals during your trip for each year in the dataset: </h3>
+                    <br>
+                    <div class="row justify-content-center">
+                        <div id = "by-year" class="col-md-12">
+                            <div id="table-area" class="">
+                            <table id="ufo-table" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th style='font-size:25px;' class="table-head">Year</th>
+                                    <th  style='font-size:25px;' class="table-head">Minimum Temperature</th>
+                                    <th  style='font-size:25px;' class="table-head">Average Temperature</th>
+                                    <th  style='font-size:25px;' class="table-head">Maximum Temperature</th>
+                                </tr>
+                                </thead>
+                                <tbody id = "table-body"></tbody>
+                            </table>
+                            </div>
+                        </div>
+                        </div> <!-- ENDS <div class="row justify-content-center"> -->
+    
+                    <div id = 'yearNormDiv'></div>
+                    <br>
+                    <h3 class = "text-info"></h3>
+                </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                
+                <div style = "background-color:#364453;" class="row justify-content-center">
+                <h1 style="color:white; text-align:center; background-color:#2a3747;padding:35px;margin-top:0px" class="text-info">RAINFALL</h1>
+                <div class="col-md-12">
+                    <h1 style = "text-align:center;background-color:#2a3747;margin-right:75%; padding:15px" class="text-info">LAST YEAR</h1>
+                    <br>
+                    <h2 id = 'past-year-rain' class = "text-info"></h2>
+                    <br>
+                    <div class='container container-fluid'>
+                    <div style="padding:20px" class="row justify-content-center align-items-center">
+                        <div class='col-sm-1 col-md-1 col-lg-1'></div>
+                        <div id = 'past-year-1' class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'rain-1' class = "text-info"></h3>
+                        <!-- <div id="past-year-norms-1-graph"></div> -->
+                        </div>
+                        <div id = 'past-year-2' class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'rain-2' class = "text-info"></h3>
+                        <!-- <div id="past-year-norms-2-graph"></div> -->
+                        </div>
+                        <div id = "past-year-3" class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'rain-3' class = "text-info"></h3>
+                        </div>
+                        <div class='col-sm-1 col-md-1 col-lg-1'></div>
+    
+                        <!-- ENDS ROW JUSTIFY CONTENT CENTER-->
+                    </div>
+                    </div>
+                    <br>
+                    <h2 class = "text-info">Daily average precipitation for your trip dates last year</h2>
+                    <br>
+                    <div id = 'rain-daily'></div>
+                    <br>
+                    <h2 class = "text-info">Precipitation data for your trip dates last year</h2>
+                    <br>
+                    <div class="row justify-content-center">
+                    <div id = "trip-rainfall" class="col-md-12">
+                        <div id="table-area" class="">
+                            <table id="ufo-table" class="table table-striped">
+                            <thead>
+                                <tr>
+                                <th style='font-size:25px;' class="table-head">Date</th>
+                                <th style='font-size:20px;' class="table-head">Precipitation1 [P1]</th>
+                                <th style='font-size:25px;'class="table-head"> P2</th>
+                                <th style='font-size:25px;' class="table-head"> P3</th>
+                                <th style='font-size:25px;' class="table-head"> P4</th>
+                                <th style='font-size:25px;' class="table-head"> P5</th>
+                                <th style='font-size:25px;' class="table-head"> P6</th>
+                                <th style='font-size:25px;' class="table-head"> P7</th>
+                                </tr>
+                            </thead>
+                            <tbody id = "table-body"></tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div> <!-- ENDS <div class="row justify-content-center"> -->
+                    
+                    <br>
+                    <h2 class = "text-info">Total amount of rainfall per weather station for your trip dates last year</h2>
+                    <div class="row justify-content-center">
+                    <div id = "station-rainfall" class="col-md-12">
+                        <div id="table-area" class="">
+                            <table id="ufo-table" class="table table-striped">
+                            <thead>
+                                <tr>
+                                <th style='font-size:20px;' class="table-head">Station</th>
+                                <th  style='font-size:20px;' class="table-head">Name</th>
+                                <th  style='font-size:20px;' class="table-head">Lat</th>
+                                <th  style='font-size:20px;' class="table-head">Lon</th>
+                                <th  style='font-size:20px;' class="table-head">Elevation</th>
+                                <th  style='font-size:20px;' class="table-head">Total Amount of Rainfall</th>
+                                </tr>
+                            </thead>
+                            <tbody id = "table-body"></tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div> <!-- ENDS <div class="row justify-content-center"> -->
+                    
+                </div>
+            </div><!-- ENDS <div class="container container-fluid"> -->
+                <!-- ENDS div class wrappper -->
+    
+            </div><!-- ENDS display2016Data -->
+        {% endif %}
+
+
+
+                            
+
+
+        
+
+       
+
+
+        {% if myNormalsStartEnd %}
+        <div class='container container-fluid'>
+          <div class="row justify-content-center">
+            <div class="col-md-12" id="element_target">
+                <h1 style="color:#df691a; text-align:center; background-color:#364453; padding:20px" id = "currentPage" class="text-info">YOUR TRIP DATES: <span style='color:whitesmoke'> {{ myStart }}</span> to <span style='color:whitesmoke'>{{ myEnd }} </span></h1>
+                <br>
+                <br>
+            </div>
+          </div>
+          <div style = "background-color:#364453;" class="row justify-content-center">
+            <h1 style="color:white;text-align:center; background-color:#2a3747;padding:35px;margin-top:0px" class="text-info">TEMPERATURE OBSERVATIONS</h1>
+
+            <div class="col-md-12">
+
+            
+                    <h1 style = "text-align:center;background-color:#2a3747;margin-right:75%; padding:15px" class="text-info">LAST YEAR</h1>
+
+                  <h2 id = 'past-year-dates' class = "text-info"></h2>
+                  <div class='container container-fluid'>
+
+
+     
+
+                  <div style="padding:20px" class="row justify-content-center align-items-center">
+                    <div class='col-sm-1 col-md-1 col-lg-1'></div>
+                      <div id = 'past-year-1' class="col-lg-3 col-md-3 col-sm-3">
+                      <h3 style="color:linen" id = 'past-year-norms-1' class = "text-info"></h3>
+                      <div id="past-year-norms-1-graph"></div>
+                    </div>
+                      <div id = 'past-year-2' class="col-lg-3 col-md-3 col-sm-3">
+                      <h3 style="color:linen" id = 'past-year-norms-2' class = "text-info"></h3>
+                      <div id="past-year-norms-2-graph"></div>
+                    </div>
+                      <div id = "past-year-3" class="col-lg-3 col-md-3 col-sm-3">
+                      <h3 style="color:linen" id = 'past-year-norms-3' class = "text-info"></h3>
+                    </div>
+                    <div class='col-sm-1 col-md-1 col-lg-1'></div>
+  
+                    <!-- ENDS ROW JUSTIFY CONTENT CENTER-->
+                  </div>
+                </div>
+                 
+                    
+                      <h3 class = "text-info">Here is a breakdown of the temperature normals during your trip for each day of last year: </h3>
+              <!-- </div> -->
+                      <br>
+                      <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div id="table-area" class="">
+                              <table id="ufo-table" class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th style='font-size:20px;' class="table-head">Date</th>
+                                    <th  style='font-size:20px;' class="table-head">Minimum Temperature</th>
+                                    <th  style='font-size:20px;' class="table-head">Average Temperature</th>
+                                    <th  style='font-size:20px;' class="table-head">Maximum Temperature</th>
+                                  </tr>
+                                </thead>
+                                <tbody id = "table-body last-year"></tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div> <!-- ENDS <div class="row justify-content-center"> -->
+                        <!-- </div> -->
+                 
+                    
+                  <!-- </div> -->
+                  <div id = 'area-chart'></div>
+                
+                  <br>
+                  <br>
+                  <hr style='border: 1px solid #2a3747'>
+                  <br>
+                  
+                  <h1 style = "text-align:center;background-color:#2a3747;margin-right:75%; padding:15px" class="text-info">ALL YEARS</h1>
+                  <h2 id = "all-years-dates" class = "text-info"></h2>
+                  <div class='container container-fluid'>
+                    <div style="padding:20px" class="row justify-content-center align-items-center">
+                      <div class='col-sm-1 col-md-1 col-lg-1'></div>
+                        <div id = 'past-year-1' class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'all-year-norms-1' class = "text-info"></h3>
+                      </div>
+                        <div id = 'past-year-2' class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'all-year-norms-2' class = "text-info"></h3>
+                      </div>
+                        <div id = "past-year-3" class="col-lg-3 col-md-3 col-sm-3">
+                        <h3 style="color:linen" id = 'all-year-norms-3' class = "text-info"></h3>
+                      </div>
+                      <div class='col-sm-1 col-md-1 col-lg-1'></div>
+    
+                      <!-- ENDS ROW JUSTIFY CONTENT CENTER-->
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="col-lg-1 col-md-1 col-sm-1">
+                    </div>
+                    <div class="col-lg-11 col-md-11 col-sm-11">
+                      <h3 id = 'all-year-norms-1' class = "text-info"></h3>
+                      <h3 id = 'all-year-norms-2' class = "text-info"></h3>
+                      <h3 id = 'all-year-norms-3' class = "text-info"></h3>
+                    </div>
+                  </div>
+                  <br>
+
+                  <h3 class = "text-info">Here is a breakdown of the temperature normals during your trip for each year in the dataset: </h3>
+                  <br>
+                  <div class="row justify-content-center">
+                    <div id = "by-year" class="col-md-12">
+                        <div id="table-area" class="">
+                          <table id="ufo-table" class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th style='font-size:25px;' class="table-head">Year</th>
+                                <th  style='font-size:25px;' class="table-head">Minimum Temperature</th>
+                                <th  style='font-size:25px;' class="table-head">Average Temperature</th>
+                                <th  style='font-size:25px;' class="table-head">Maximum Temperature</th>
+                              </tr>
+                            </thead>
+                            <tbody id = "table-body"></tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div> <!-- ENDS <div class="row justify-content-center"> -->
+
+                <div id = 'yearNormDiv'></div>
+                <br>
+                <h3 class = "text-info"></h3>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            
+            <div style = "background-color:#364453;" class="row justify-content-center">
+              <h1 style="color:white; text-align:center; background-color:#2a3747;padding:35px;margin-top:0px" class="text-info">RAINFALL</h1>
+              <div class="col-md-12">
+                <h1 style = "text-align:center;background-color:#2a3747;margin-right:75%; padding:15px" class="text-info">LAST YEAR</h1>
+                <br>
+                <h2 id = 'past-year-rain' class = "text-info"></h2>
+                <br>
+                <div class='container container-fluid'>
+                  <div style="padding:20px" class="row justify-content-center align-items-center">
+                    <div class='col-sm-1 col-md-1 col-lg-1'></div>
+                      <div id = 'past-year-1' class="col-lg-3 col-md-3 col-sm-3">
+                      <h3 style="color:linen" id = 'rain-1' class = "text-info"></h3>
+                      <!-- <div id="past-year-norms-1-graph"></div> -->
+                    </div>
+                      <div id = 'past-year-2' class="col-lg-3 col-md-3 col-sm-3">
+                      <h3 style="color:linen" id = 'rain-2' class = "text-info"></h3>
+                      <!-- <div id="past-year-norms-2-graph"></div> -->
+                    </div>
+                      <div id = "past-year-3" class="col-lg-3 col-md-3 col-sm-3">
+                      <h3 style="color:linen" id = 'rain-3' class = "text-info"></h3>
+                    </div>
+                    <div class='col-sm-1 col-md-1 col-lg-1'></div>
+  
+                    <!-- ENDS ROW JUSTIFY CONTENT CENTER-->
+                  </div>
+                </div>
+                <br>
+                <h2 class = "text-info">Daily average precipitation for your trip dates last year</h2>
+                <br>
+                <div id = 'rain-daily'></div>
+                <br>
+                <h2 class = "text-info">Precipitation data for your trip dates last year</h2>
+                <br>
+                <div class="row justify-content-center">
+                  <div id = "trip-rainfall" class="col-md-12">
+                      <div id="table-area" class="">
+                        <table id="ufo-table" class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th style='font-size:25px;' class="table-head">Date</th>
+                              <th style='font-size:20px;' class="table-head">Precipitation1 [P1]</th>
+                              <th style='font-size:25px;'class="table-head"> P2</th>
+                              <th style='font-size:25px;' class="table-head"> P3</th>
+                              <th style='font-size:25px;' class="table-head"> P4</th>
+                              <th style='font-size:25px;' class="table-head"> P5</th>
+                              <th style='font-size:25px;' class="table-head"> P6</th>
+                              <th style='font-size:25px;' class="table-head"> P7</th>
+                            </tr>
+                          </thead>
+                          <tbody id = "table-body"></tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div> <!-- ENDS <div class="row justify-content-center"> -->
+                
+                <br>
+                <h2 class = "text-info">Total amount of rainfall per weather station for your trip dates last year</h2>
+                <div class="row justify-content-center">
+                  <div id = "station-rainfall" class="col-md-12">
+                      <div id="table-area" class="">
+                        <table id="ufo-table" class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th style='font-size:20px;' class="table-head">Station</th>
+                              <th  style='font-size:20px;' class="table-head">Name</th>
+                              <th  style='font-size:20px;' class="table-head">Lat</th>
+                              <th  style='font-size:20px;' class="table-head">Lon</th>
+                              <th  style='font-size:20px;' class="table-head">Elevation</th>
+                              <th  style='font-size:20px;' class="table-head">Total Amount of Rainfall</th>
+                            </tr>
+                          </thead>
+                          <tbody id = "table-body"></tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div> <!-- ENDS <div class="row justify-content-center"> -->
+                
+              </div>
+        </div><!-- ENDS <div class="container container-fluid"> -->
+              <!-- ENDS div class wrappper -->
+  
+      
+      {% endif %}
+
+
+ 
+
+ 
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+            <div style = "text-align: center" class="col-sm-12 col-md-12">
+              <h5>Want to contribute?</h5>
+              <p class="text-center"><a href="https://github.com/maivey/explore-bikeshare-data">Join the Github!</a></p>
+                  <br>
+                </div>
+              </div>
+          </div>
+      <span class="bottom">Hawaii Climate App</span>
+    </footer>
+  </div>
+<!-- </div> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <!-- <script type="text/javascript" src='./static/js/app.js'></script> -->
+
+
+  <!-- <script src="static/js/data.js"></script> -->
+  <!-- <script src="static/js/app.js"></script> -->
+</body>
+
+</html>

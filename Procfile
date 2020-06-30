@@ -1,0 +1,1 @@
+web: gunicorn hawaii_app.app:app
