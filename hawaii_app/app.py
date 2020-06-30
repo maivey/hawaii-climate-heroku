@@ -46,7 +46,7 @@ def check_order(start,end):
     else:
         return True
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Resources/hawaii.sqlite"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Resources/hawaii.sqlite"
 # db = SQLAlchemy(app)
 
 # Database setup
@@ -63,6 +63,7 @@ Station = Base.classes.station
 
 #Flask Setup:
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Resources/hawaii.sqlite"
 #Routes:
 # /
     #Home page
