@@ -264,10 +264,20 @@
 .nav li {
   font-size:10px;
 }
+#startDate {
+    font-size:10px;
+};
+#startDate_start {
+    font-size:10px;
+};
+#startDate_end {
+    font-size:10px;
+};
+
 }
  
 
-  @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
   .hero {
     position: relative;
     height: 200px;
@@ -301,6 +311,15 @@
 .nav li {
   font-size:10px;
 }
+#startDate {
+    font-size:10px;
+};
+#startDate_start {
+    font-size:10px;
+};
+#startDate_end {
+    font-size:10px;
+};
 }
 
 
@@ -338,6 +357,15 @@
 .nav li {
   font-size:10px;
 }
+#startDate {
+    font-size:10px;
+};
+#startDate_start {
+    font-size:10px;
+};
+#startDate_end {
+    font-size:10px;
+};
 }
 
  @keyframes title {
