@@ -191,7 +191,7 @@ def main():
             all_station_count = len(station_list)
 
 
-            session.close()
+            # session.close()
             # return(jsonify(station_list))
             return flask.render_template('index.html',
             # cityError = dict_df
@@ -201,7 +201,7 @@ def main():
     if request.form["btn"]=="tobs":
         if request.method == 'POST':
             # query for the dates and temperature observations from a year from the last data point.
-            session = Session(engine)
+            # session = Session(engine)
             top_station = db.session.query(Measurement.station, func.count(Measurement.station)).\
                 group_by(Measurement.station).\
                     order_by(func.count(Measurement.station).desc()).\
