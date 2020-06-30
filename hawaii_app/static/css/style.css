@@ -138,13 +138,28 @@
 
   .filter p {
     font-size:15px;
+    padding-top:5px;
     /*font-size:25px;*/
     /* font-weight: bold; */
 };
-.filter button {
+#filter-btn {
+  margin-left:50px;
+  font-size:15px;
+}
+#filt_both {
+  /* margin-left:50px; */
+  /* font-size:15px; */
+  margin-top:0px;
+  /* padding-bottom:25px; */
+}
+/* #startFilter {
+  margin-left:20px;
+} */
+
+/*filter button {
   margin-left:50px;
   font-size:10px;
-}
+}*/
 /* 
 .filter label {
     font-size:20px;
@@ -152,14 +167,46 @@
 /* }; */ 
 
 #startDate {
-    font-size:25px;
-};
-#startDate_start {
-    font-size:25px;
+    /* font-size:25px; */
+    font-size:15px; 
+    /* margin-left:30px; */
+    /* margin-top:7px; */
 };
 
+#startDate_label {
+  font-size:20px; 
+  margin-left:30px;
+  margin-top:20px;
+}
+/* #startDate_label {
+  font-size:25px !important;
+  margin-left:10px;
+  margin-top:10px;
+}; */
+
+/* #startDate_start {
+    font-size:25px;
+}; */
+
 #startDate_start_label {
-    margin-left:20px;
+  font-size:80%;
+  margin-left:20px;
+  margin-top:7px
+}
+#startDate_end_label {
+  font-size:80%;
+  margin-left:20px;
+  margin-top:5px;
+}
+#start_trip_label {
+font-size:80%;
+margin-left:20px;
+margin-top:10px
+}
+#end_trip_label {
+  font-size:80%;
+  margin-left:20px;
+  margin-top:10px;
 }
 
 #past-year-1 {
@@ -185,47 +232,15 @@
     border-radius: 20px;
 
 }
-
-/* .active {
-    background-color:navy;
-
-} */
-
-
-/********************************************************************/
-/********************************************************************/
-/********************************************************************/
-/*** TWO PANELS ***/
-/* .panel.with-nav-tabs .panel-heading{
-    padding: 5px 5px 0 5px;
+#mainText {
+  /*font-size:4vw;*/
+  text-align: center;
 }
-.panel.with-nav-tabs .nav-tabs{
-	border-bottom: none;
-}
-.panel.with-nav-tabs .nav-justified{
-	margin-bottom: -1px;
-} */
-/********************************************************************/
-/*** PANEL DEFAULT ***/
+/* <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button> */
 
-/* .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu { */
-    /* background-color: #f5f5f5;
-    border-color: #ddd; */
-/* } */
-/* .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {
-    color: #777;   
-} */
-/* .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover, */
-/* .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
-    background-color: #ddd;
-} */
-/* .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover, */
-/* .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-    color: #fff;
-    background-color: #555;
-} */
-/********************************************************************/
+
+
+
 /********************************************************************/
 /********************************************************************/
 
@@ -249,7 +264,7 @@
 
   .hero h1 {
     animation: smaller-title 1.2s forwards linear;
-    margin-top:10px;
+    margin-top:5px;
     /* font-size: 0.1rem;
     margin-top: 20px; */
   }
@@ -258,30 +273,177 @@
     height:200px;
   }
   .filter button {
+    margin-top:5px;
   /*margin-left:5px;*/
-  font-size:10px;
+  font-size:15px;
+  border: 1px solid #3d5164;
+  }
+  /* #startFilter {
+    margin-top:5px;
+  } */
+  /* "button filter search for Start Date:" */
+  /* style= "margin-left:50px; font-size:20px;" */
+  /* .nav li {
+    font-size:15px;
+  } */
+  .nav a {
+    font-size:80%;
+  }
+  #myOptions a {
+    font-size:80%;
+  }
+  /* .filter label {
+    font-size:15px;
+  } */
+  
+  #startDate_start {
+      font-size:15px;
+  }
+  #startDate_end {
+      font-size:15px;
+  }
+  /* #start_trip {
+      font-size:15px;
+  } */
+  /* #end_trip {
+      font-size:15px;
+  } */
+  #mainText {
+    font-size:5vw;
+    text-align: center;
+  }
+  .filter p {
+    font-size:15px
+  }
+  #startDate {
+    /* font-size:25px; */
+    font-size:15px; 
+    /* margin-left:0px;
+    margin-top:5px; */
+  }
+  
+  #startDate_start_label {
+  font-size:80%;;
+  margin-left:0px;
+  
+  }
+  #startDate_end_label {
+    font-size:80%;
+    margin-left:0px;
+  }
+  #start_trip_label {
+    font-size:80%;;
+    margin-left:0px;
+    
+    }
+  #end_trip_label {
+      font-size:80%;
+      margin-left:0px;
+    }
+
 }
-.nav li {
-  font-size:10px;
-}
-#startDate {
-    font-size:10px;
-};
-#startDate_start {
-    font-size:10px;
-};
-#startDate_end {
-    font-size:10px;
-};
-#start_trip {
-    font-size:10px;
-};
-#end_trip {
-    font-size:10px;
-};
+/********************************************************************/
+/********************************************************************/
+
+@media (max-width: 767px) {
+
+  .hero {
+    position: relative;
+    height: 200px;
+    /*height: 50%;*/
+    padding: 20px;
+    margin: 0;
+    /* background: black; */
+    background-image: url("../images/hawaii_v2.jpg");
+    background-attachment: fixed;
+    /*background-position: bottom center;*/
+    background-position: top center;
+    /*background-size: cover;*/
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .hero h1 {
+    animation: smaller-title 1.2s forwards linear;
+    margin-top:5px;
+    /* font-size: 0.1rem;
+    margin-top: 20px; */
+  }
+
+  #myHeader {
+    height:200px;
+  }
+  .filter button {
+  margin-top:10px;
+  /*margin-left:5px;*/
+  font-size:15px;
+  border: 1px solid #3d5164;
+  }
+  /* #startFilter {
+    margin-top:10px;
+  } */
+  /* "button filter search for Start Date:" */
+  /* style= "margin-left:50px; font-size:20px;" */
+  /* .filter label {
+    font-size:15px;
+  } */
+  .nav a {
+    font-size:80%;
+  }
+  #myOptions a {
+    font-size:80%;
+  }
+
+  /* #startDate {
+      font-size:15px;
+  }; */
+  #startDate_start {
+      font-size:15px;
+  }
+  #startDate_end {
+      font-size:15px;
+  }
+  /* #start_trip {
+      font-size:15px;
+  }
+  #end_trip {
+      font-size:15px;
+  } */
+  #mainText {
+    font-size:5vw;
+    text-align: center;
+  }
+  .filter p {
+    font-size:15px
+  }
+  #startDate {
+    /* font-size:25px; */
+    font-size:15px; 
+    margin-left:0px;
+    margin-top:5px;
+  }
+
+  #startDate_start_label {
+    font-size:80%;
+    margin-left:0px;
+  }
+  #startDate_end_label {
+    font-size:80%;
+    margin-left:0px;
+  }
+  #start_trip_label {
+    font-size:80%;
+    margin-left:0px;
+  }
+  #end_trip_label {
+    font-size:80%;
+    margin-left:0px;
+  }
 
 }
  
+/********************************************************************/
+/********************************************************************/
 
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
   .hero {
@@ -313,27 +475,68 @@
   .filter button {
   /*margin-left:5px;*/
   font-size:10px;
-}
-.nav li {
-  font-size:10px;
-}
-#startDate {
+  }
+  /* .nav li {
     font-size:10px;
-};
-#startDate_start {
-    font-size:10px;
-};
-#startDate_end {
-    font-size:10px;
-};
-#start_trip {
-    font-size:10px;
-};
-#end_trip {
-    font-size:10px;
-};
+  } */
+  .nav a {
+    font-size:80%;
+  }
+  #myOptions a {
+    font-size:80%;
+  }
+  #startDate {
+      font-size:10px;
+  };
+  #startDate_start {
+      font-size:10px;
+  };
+  #startDate_end {
+      font-size:10px;
+  };
+  /* #start_trip {
+      font-size:10px;
+  };
+  #end_trip {
+      font-size:10px;
+  }; */
+  #mainText {
+    font-size:5vw;
+    text-align: center;
+  }
+  .filter p {
+    font-size:15px
+  }
+  #startDate_start_label {
+    /* margin-left:20px; */
+  font-size:80%;
+  margin-left:0px;
+  /* margin-left:30px;
+  margin-top:7px */
+  }
+  #startDate_end_label {
+    font-size:80%;
+    margin-left:0px;
+    /* margin-left:30px;
+    margin-top:5px' */
+  }
+  #start_trip_label {
+    /* margin-left:20px; */
+  font-size:80%;
+  margin-left:0px;
+  /* margin-left:30px;
+  margin-top:7px */
+  }
+  #end_trip_label {
+    font-size:80%;
+    margin-left:0px;
+    /* margin-left:30px;
+    margin-top:5px' */
+  }
 }
 
+/********************************************************************/
+/********************************************************************/
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
   .hero {
@@ -363,28 +566,71 @@
     height:200px;
   }
   .filter button {
-  /*margin-left:5px;*/
-  font-size:10px;
+    /*margin-left:5px;*/
+    font-size:10px;
+    border: 1px solid #3d5164;
+  }
+  .nav a {
+    font-size:80%;
+  }
+  #myOptions a {
+    font-size:80%;
+  }
+  /* .nav li {
+    font-size:10px;
+  } */
+  #startDate {
+      font-size:10px;
+  };
+  #startDate_start {
+      font-size:10px;
+  };
+  #startDate_end {
+      font-size:10px;
+  };
+  /* #start_trip {
+      font-size:10px;
+  };
+  #end_trip {
+      font-size:10px;
+  }; */
+  #mainText {
+    font-size:5vw;
+    text-align: center;
+  }
+  .filter p {
+    font-size:15px
+  }
+  #startDate_start_label {
+    /* margin-left:20px; */
+  font-size:80%;
+  margin-left:0px;
+  /* margin-left:30px;
+  margin-top:7px */
+  }
+  #startDate_end_label {
+    font-size:80%;
+    margin-left:0px;
+    /* margin-left:30px;
+    margin-top:5px' */
+  }
+  #start_trip_label {
+    /* margin-left:20px; */
+  font-size:80%;
+  margin-left:0px;
+  /* margin-left:30px;
+  margin-top:7px */
+  }
+  #end_trip_label {
+    font-size:80%;
+    margin-left:0px;
+    /* margin-left:30px;
+    margin-top:5px' */
+  }
 }
-.nav li {
-  font-size:10px;
-}
-#startDate {
-    font-size:10px;
-};
-#startDate_start {
-    font-size:10px;
-};
-#startDate_end {
-    font-size:10px;
-};
-#start_trip {
-    font-size:10px;
-};
-#end_trip {
-    font-size:10px;
-};
-}
+
+/********************************************************************/
+/********************************************************************/
 
  @keyframes title {
     from {
@@ -403,7 +649,7 @@
     }
   
     to {
-      font-size : 5rem;
+      font-size : 4rem;
       /* font-size : 4.5rem; */
       /* font-size: 16.5rem; */
       /* font-size: 0.5rem; */
@@ -423,4 +669,5 @@
       /* font-size: 0.5rem; */
       opacity: 1;
     }
+    
   }

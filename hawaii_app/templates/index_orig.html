@@ -70,17 +70,15 @@
   <div class="container">
     <div class="row margin-top-50">
       <div class="col-md-12 col-lg-12">
-        <!-- <div class="container container-fluid"> -->
-        <h1 id = "mainText">Choose to either explore climate data for Hawaii or get climate predictions for your trip to Hawaii below</h1>
-        <!-- </div> -->
+        <h1 style="text-align: center;">Choose to either explore climate data for Hawaii or get climate predictions for your trip to Hawaii below</h1>
         <br>
         <br>
         <!-- <div class="col-md-6"> -->
           <div class="panel with-nav-tabs panel-default">
               <div class="panel-heading">
-                    <ul id = "myOptions" class="nav nav-pills">
-                        <li class="active"><a href="/" data-toggle="tab">Filter Search</a></li>
-                        <li><a href="/graphs" data-toggle="tab">Filter Search for Your Trip to Hawaii!</a></li>
+                    <ul class="nav nav-pills">
+                        <li class="active" style='font-size:20px'><a href="/" data-toggle="tab">Filter Search</a></li>
+                        <li style='font-size:20px'><a href="/graphs" data-toggle="tab">Filter Search for Your Trip to Hawaii!</a></li>
                     </ul>
               </div>
               <div class="panel-body">
@@ -94,29 +92,33 @@
                                     <div class='col-sm-9 col-md-9 col-lg-9'>
                                       <p>Would you like to see the last 12 months of precipitation data?</p>
                                     </div>
-                                    <div class='col-sm-3 col-md-3 col-lg-3'>
+                                    <div class='col-md-3 col-md-3 col-lg-3'>
                                       <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "stats">Show Data</button>
+                                      <!-- <input style= "margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" type="button" href='#element_target' value = "Show Data" /> -->
                                     </div>
                                   </div>
                                 </li>
                               </ul>
-                              
+                            <!-- </div> -->
+                            <!-- <div style='background-color:#ebebeb'> -->
                               <hr style='border: 1px solid #30475e'>
                               <ul class="list-group" id="filters">
                                 <li class="filter list-group-item">
                                   <div class='row'>
                                     <div class='col-sm-9 col-md-9 col-lg-9'>
-                                      <p>Would you like to see a list of the stations from the dataset? </p>
+                                      <p>Would you like to a list of the stations from the dataset? </p>
                                     </div>
-                                    <div class='col-sm-3 col-md-3 col-lg-3'>
+                                    <div class='col-md-3 col-md-3 col-lg-3'>
                                       <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "stations">Show Stations</button></p>
           
                                     </div>
                                   </div>
-       
+                                  <!-- <p>Would you like to a list of the stations from the dataset? 
+                                    <button style= "margin-left:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "stations">Show Stations</button></p> -->
                                 </li>
                               </ul>
-                           
+                            <!-- </div> -->
+                            <!-- <div class="panel-heading"> -->
                               <hr style='border: 1px solid #30475e'>
                               <ul class="list-group" id="filters">
                                 <li class="filter list-group-item">
@@ -124,103 +126,109 @@
                                     <div class='col-sm-9 col-md-9 col-lg-9'>
                                       <p>Would you like to see the temperature observations for the last 12 months?</p>
                                     </div>
-                                    <div class='col-sm-3 col-md-3 col-lg-3'>
+                                    <div class='col-md-3 col-md-3 col-lg-3'>
+                                      <!-- <a href="/#element_target"> -->
                                         <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "tobs">Show TOBS</button>
+                                        <!-- <button style= "margin-left:50px; font-size:20px;" id="filter-btn" type="submit" onclick="location.href='/#element_target';" class="btn btn-default" name = "btn" value = "tobs"><a href="/#element_target">Show TOBS</a></button> -->
+                                      <!-- </a> -->
                                     </p>
                                     </div>
                                   </div>
                                 </li>
                               </ul>
+                            <!-- </div> -->
           
                             <hr style = 'border: 1px solid #30475e'>
           
                             {% if wrongDate %}
                               <ul class="list-group" id="filters">
                                 <li class="filter list-group-item">
-                                  <p>Enter a start date to see the daily maximum, minimum, and average temperatures</p>
+                                  <h3>Enter a start date to see the daily maximum, minimum, and average temperatures</h3>
                                   <br>
                                   <div class='row'>
-                                    <div class='col-sm-2 col-md-2 col-lg-2'>
-                                      <label id = "startDate" for="startDate">Start Date : </label>
+                                    <div class='col-md-2'>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate" for="startDate">Start Date : </label>
                                     </div>
           
-                                    <div class='col-sm-7 col-md-7 col-lg-7'>
+                                    <div class='col-md-7'>
                                       <input name = "startDate" class="form-control" id="startDate" type="text" placeholder="2014-04-01">
                                     </div>
-                                    <div class='col-sm-3 col-md-3 col-lg-3'>
-                                      <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate">Filter Search</button>
+                                    <div class='col-md-3 col-md-3 col-lg-3'>
+                                      <button style= "margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate">Filter Search</button>
           
+                                      <!-- <input name = "startDate" class="form-control" id="startDate" type="text" placeholder="2014-04-01"> -->
                                     </div>
                                   </div>
                                   <div class='row'>
-                                    <div class='col-sm-2 col-md-2 col-lg-2'>
+                                    <div class='col-md-2'>
                                       <p style='color:rgb(216, 76, 76)'> </p>
           
                                     </div>
-                                    <div class='col-sm-7 col-md-7 col-lg-7'>
+                                    <div class='col-md-7'>
           
                                       <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter a valid date (Format : YYYY-MM-DD)</p>
+                                      <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
                                     </div>
                                   </div>
                                 </li>
                               </ul>
 
 
+                              <!-- <p style='font-weight:bold; color:rgb(240, 142, 142)'>The data only goes back to 2010-01-01. Please enter a valid start date prior to 2010-01-01</p> -->
 
                             {% elif earlyDate %}
                               <ul class="list-group" id="filters">
                                 <li class="filter list-group-item">
-                                  <p>Enter a start date to see the daily maximum, minimum, and average temperatures</p>
+                                  <h3>Enter a start date to see the daily maximum, minimum, and average temperatures</h3>
                                   <br>
                                   <div class='row'>
-                                    <div class='col-sm-2 col-md-2 col-lg-2'>
-                                      <label id = "startDate" for="startDate">Start Date : </label>
+                                    <div class='col-md-2'>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate" for="startDate">Start Date : </label>
                                     </div>
           
-                                    <div class='col-sm-7 col-md-7 col-lg-7'>
+                                    <div class='col-md-7'>
                                       <input name = "startDate" class="form-control" id="startDate" type="text" placeholder="2014-04-01">
                                     </div>
-                                    <div class='col-sm-3 col-md-3 col-lg-3'>
-                                      <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate">Filter Search</button>
+                                    <div class='col-md-3 col-md-3 col-lg-3'>
+                                      <button style= "margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate">Filter Search</button>
                                     </div>
                                   </div>
                                   <div class='row'>
-                                    <div class='col-sm-2 col-md-2 col-lg-2'>
+                                    <div class='col-md-2'>
                                       <p style='color:rgb(216, 76, 76)'> </p>
           
                                     </div>
-                                    <div class='col-sm-7 col-md-7 col-lg-7'>
+                                    <div class='col-md-7'>
                                       <p style='font-weight:bold; color:rgb(240, 142, 142)'>The data only goes back to 2010-01-01. Please enter a valid start date after 2010-01-01.</p>
-                                    </div>
+                                              </div>
                                   </div>
                                 </li>
                               </ul>
                             {% elif startOver_startOnly %}
                               <ul class="list-group" id="filters">
                                 <li class="filter list-group-item">
-                                  <p>Enter a start date to see the daily maximum, minimum, and average temperatures</p>
-
+                                  <h3>Enter a start date to see the daily maximum, minimum, and average temperatures</h3>
                                   <br>
                                   <div class='row'>
-                                    <div class='col-sm-2 col-md-2 col-lg-2'>
-                                      <label id = "startDate" for="startDate">Start Date : </label>
+                                    <div class='col-md-2'>
+                                      <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate" for="startDate">Start Date : </label>
                                     </div>
           
-                                    <div class='col-sm-7 col-md-7 col-lg-7'>
+                                    <div class='col-md-7'>
                                       <input name = "startDate" class="form-control" id="startDate" type="text" placeholder="2014-04-01">
                                     </div>
-                                    <div class='col-sm-3 col-md-3 col-lg-3'>
-                                      <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate">Filter Search</button>
+                                    <div class='col-md-3 col-md-3 col-lg-3'>
+                                      <button style= "margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate">Filter Search</button>
                                     </div>
                                   </div>
                                   <div class='row'>
-                                    <div class='col-sm-2 col-md-2 col-lg-2'>
+                                    <div class='col-md-2'>
                                       <p style='color:rgb(216, 76, 76)'> </p>
           
                                     </div>
-                                    <div class='col-sm-7 col-md-7 col-lg-7'>
+                                    <div class='col-md-7'>
                                       <p style='font-weight:bold; color:rgb(240, 142, 142)'>The last date of the dataset is 2017-08-23. Please enter a valid start date prior to 2017-08-23.</p>
-                                    </div>
+                                              </div>
                                   </div>
                                 </li>
                               </ul>
@@ -228,20 +236,23 @@
                             {% else %}
                             <ul class="list-group" id="filters">
                               <li class="filter list-group-item">
-                                <p>Enter a start date to see the daily maximum, minimum, and average temperatures</p>
-
+                                <h3>Enter a start date to see the daily maximum, minimum, and average temperatures</h3>
                                 <br>
+                                <!-- <label id = "startDate" for="startDate">Enter a start date to see the daily maximum, minimum, and average temperatures.</label> -->
                                 <div class='row'>
-                                  <div class='col-sm-2 col-md-2 col-lg-2'>
-                                    <label id = "startDate_label" for="startDate">Start Date : </label>
+                                  <div class='col-md-2'>
+                                    <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate" for="startDate">Start Date : </label>
+          
+                                    <!-- <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01"> -->
                                   </div>
           
-                                  <div class='col-sm-7 col-md-7 col-lg-7'>
+                                  <div class='col-md-7'>
                                     <input name = "startDate" class="form-control" id="startDate" type="text" placeholder="2014-04-01">
                                   </div>
-                                  <div class='col-sm-3 col-md-3 col-lg-3'>
-                                    <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate">Filter Search</button>
+                                  <div class='col-md-3 col-md-3 col-lg-3'>
+                                    <button style= "margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate">Filter Search</button>
           
+                                    <!-- <input name = "startDate" class="form-control" id="startDate" type="text" placeholder="2014-04-01"> -->
                                   </div>
                                 </div>
               
@@ -257,40 +268,40 @@
                             <hr style = 'border: 1px solid #30475e'>
                                   <ul class="list-group" id="filters">
                                     <li class="filter list-group-item">
-                                      <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                      <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                       <br>
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
-                                          <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                        <div class='col-md-2'>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                          <br>
+                                          <br>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
+              
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+              
+                                        <div class='col-md-7'>
                                           <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                          <br>
+                                          <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
+              
                                         </div>
-                                      </div>
-                                        <br>
-                                      <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                          </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
-                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                          </div>
-                                          <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                            <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                          </div>
+                                        <div class='col-md-2'>
+                                          <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                        </div>
                                       </div>
                                     <!-- ERROR MESSAGE -->
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
+                                        <div class='col-md-2'>
                                           <p style='color:rgb(216, 76, 76)'> </p>
               
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
               
                                           <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter a valid start and end date (Format : YYYY-MM-DD)</p>
+                                          <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
                                         </div>
                                       </div>
-                                    <!-- ENDS ERROR MESSAGE -->
+                                    <!-- END ERROR MESSAGE -->
                                       <br>
                                     </li>
                                   </ul>
@@ -298,35 +309,34 @@
                             <hr style = 'border: 1px solid #30475e'>
                                   <ul class="list-group" id="filters">
                                     <li class="filter list-group-item">
-                                      <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                      <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                       <br>
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
-                                          <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                        <div class='col-md-2'>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                          <br>
+                                          <br>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
+              
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+              
+                                        <div class='col-md-7'>
                                           <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                          <br>
+                                          <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
+              
                                         </div>
-                                      </div>
-                                        <br>
-                                      <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                          </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
-                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                          </div>
-                                          <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                            <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                          </div>
+                                        <div class='col-md-2'>
+                                          <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                        </div>
                                       </div>
                                     <!-- ERROR MESSAGE -->
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
+                                        <div class='col-md-2'>
                                           <p style='color:rgb(216, 76, 76)'> </p>
               
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
               
                                           <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter a valid start date (Format : YYYY-MM-DD)</p>
                                           <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
@@ -340,35 +350,31 @@
                                 <hr style = 'border: 1px solid #30475e'>
                                   <ul class="list-group" id="filters">
                                     <li class="filter list-group-item">
-                                      <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                      <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                       <br>
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
-                                          <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                        <div class='col-md-2'>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                          <br>
+                                          <br>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
                                           <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                          <br>
+                                          <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
                                         </div>
-                                      </div>
-                                        <br>
-                                      <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                          </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
-                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                          </div>
-                                          <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                            <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                          </div>
+                                        <div class='col-md-2'>
+                                          <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                        </div>
                                       </div>
                                       <!-- ERROR MESSAGE -->
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
+                                        <div class='col-md-2'>
                                           <p style='color:rgb(216, 76, 76)'> </p>
               
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
               
                                           <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter a valid end date (Format : YYYY-MM-DD)</p>
                                           <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
@@ -382,34 +388,30 @@
                                   <hr style = 'border: 1px solid #30475e'>
                                     <ul class="list-group" id="filters">
                                       <li class="filter list-group-item">
-                                        <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                        <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                         <br>
                                         <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                          <div class='col-md-2'>
+                                            <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                            <br>
+                                            <br>
+                                            <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
                                           </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
+                                          <div class='col-md-7'>
                                             <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                            <br>
+                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
                                           </div>
-                                        </div>
-                                          <br>
-                                        <div class='row'>
-                                            <div class='col-sm-2 col-md-2 col-lg-2'>
-                                              <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                            </div>
-                                            <div class='col-sm-7 col-md-7 col-lg-7'>
-                                              <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                            </div>
-                                            <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                              <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                            </div>
+                                          <div class='col-md-2'>
+                                            <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                          </div>
                                         </div>
                                         <!-- ERROR MESSAGE -->
                                         <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
+                                          <div class='col-md-2'>
                                             <p style='color:rgb(216, 76, 76)'> </p>
                                           </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
+                                          <div class='col-md-7'>
                                             <p style='font-weight:bold; color:rgb(240, 142, 142)'>Please enter an end date prior to the start date.</p>
                                           </div>
                                         </div>
@@ -421,34 +423,30 @@
                                     <hr style = 'border: 1px solid #30475e'>
                                       <ul class="list-group" id="filters">
                                         <li class="filter list-group-item">
-                                          <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                          <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                           <br>
                                           <div class='row'>
-                                            <div class='col-sm-2 col-md-2 col-lg-2'>
-                                              <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                            <div class='col-md-2'>
+                                              <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                              <br>
+                                              <br>
+                                              <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
                                             </div>
-                                            <div class='col-sm-7 col-md-7 col-lg-7'>
+                                            <div class='col-md-7'>
                                               <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                              <br>
+                                              <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
                                             </div>
-                                          </div>
-                                            <br>
-                                          <div class='row'>
-                                              <div class='col-sm-2 col-md-2 col-lg-2'>
-                                                <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                              </div>
-                                              <div class='col-sm-7 col-md-7 col-lg-7'>
-                                                <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                              </div>
-                                              <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                                <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                              </div>
+                                            <div class='col-md-2'>
+                                              <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                            </div>
                                           </div>
                                           <!-- ERROR MESSAGE -->
                                           <div class='row'>
-                                            <div class='col-sm-2 col-md-2 col-lg-2'>
+                                            <div class='col-md-2'>
                                               <p style='color:rgb(216, 76, 76)'> </p>
                                             </div>
-                                            <div class='col-sm-7 col-md-7 col-lg-7'>
+                                            <div class='col-md-7'>
                                               <p style='font-weight:bold; color:rgb(240, 142, 142)'>The data only goes back as far as 2010-01-01, and the last date of the dataset is 2017-08-23. Please enter a start date after 2010-01-01 and an end date prior to 2017-08-23.</p>
                                             </div>
                                           </div>
@@ -460,34 +458,30 @@
                                   <hr style = 'border: 1px solid #30475e'>
                                     <ul class="list-group" id="filters">
                                       <li class="filter list-group-item">
-                                        <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                        <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                         <br>
                                         <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                          <div class='col-md-2'>
+                                            <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                            <br>
+                                            <br>
+                                            <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
                                           </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
+                                          <div class='col-md-7'>
                                             <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                            <br>
+                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
                                           </div>
-                                        </div>
-                                          <br>
-                                        <div class='row'>
-                                            <div class='col-sm-2 col-md-2 col-lg-2'>
-                                              <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                            </div>
-                                            <div class='col-sm-7 col-md-7 col-lg-7'>
-                                              <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                            </div>
-                                            <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                              <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                            </div>
+                                          <div class='col-md-2'>
+                                            <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                          </div>
                                         </div>
                                         <!-- ERROR MESSAGE -->
                                         <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
+                                          <div class='col-md-2'>
                                             <p style='color:rgb(216, 76, 76)'> </p>
                                           </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
+                                          <div class='col-md-7'>
                                             <p style='font-weight:bold; color:rgb(240, 142, 142)'>The data only goes back to 2010-01-01. Please enter a valid start and end date after 2010-01-01.</p>
                                           </div>
                                         </div>
@@ -499,34 +493,30 @@
                                 <hr style = 'border: 1px solid #30475e'>
                                   <ul class="list-group" id="filters">
                                     <li class="filter list-group-item">
-                                      <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                      <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                       <br>
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
-                                          <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                        <div class='col-md-2'>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                          <br>
+                                          <br>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
                                           <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                          <br>
+                                          <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
                                         </div>
-                                      </div>
-                                        <br>
-                                      <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                          </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
-                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                          </div>
-                                          <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                            <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                          </div>
+                                        <div class='col-md-2'>
+                                          <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                        </div>
                                       </div>
                                       <!-- ERROR MESSAGE -->
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
+                                        <div class='col-md-2'>
                                           <p style='color:rgb(216, 76, 76)'> </p>
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
                                           <p style='font-weight:bold; color:rgb(240, 142, 142)'>The data only goes back to 2010-01-01. Please enter a valid start date after 2010-01-01.</p>
                                         </div>
                                       </div>
@@ -538,34 +528,30 @@
                                 <hr style = 'border: 1px solid #30475e'>
                                   <ul class="list-group" id="filters">
                                     <li class="filter list-group-item">
-                                      <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                      <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                       <br>
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
-                                          <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                        <div class='col-md-2'>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                          <br>
+                                          <br>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
                                           <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                          <br>
+                                          <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
                                         </div>
-                                      </div>
-                                        <br>
-                                      <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                          </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
-                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                          </div>
-                                          <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                            <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                          </div>
+                                        <div class='col-md-2'>
+                                          <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                        </div>
                                       </div>
                                       <!-- ERROR MESSAGE -->
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
+                                        <div class='col-md-2'>
                                           <p style='color:rgb(216, 76, 76)'> </p>
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
                                           <p style='font-weight:bold; color:rgb(240, 142, 142)'>The last date of the dataset is 2017-08-23. Please enter a valid start and end date prior to 2017-08-23.</p>
                                         </div>
                                       </div>
@@ -577,34 +563,30 @@
                                   <hr style = 'border: 1px solid #30475e'>
                                     <ul class="list-group" id="filters">
                                       <li class="filter list-group-item">
-                                        <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                        <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                         <br>
                                         <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                          <div class='col-md-2'>
+                                            <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                            <br>
+                                            <br>
+                                            <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
                                           </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
+                                          <div class='col-md-7'>
                                             <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                            <br>
+                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
                                           </div>
-                                        </div>
-                                          <br>
-                                        <div class='row'>
-                                            <div class='col-sm-2 col-md-2 col-lg-2'>
-                                              <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                            </div>
-                                            <div class='col-sm-7 col-md-7 col-lg-7'>
-                                              <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                            </div>
-                                            <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                              <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                            </div>
+                                          <div class='col-md-2'>
+                                            <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                          </div>
                                         </div>
                                         <!-- ERROR MESSAGE -->
                                         <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
+                                          <div class='col-md-2'>
                                             <p style='color:rgb(216, 76, 76)'> </p>
                                           </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
+                                          <div class='col-md-7'>
                                             <p style='font-weight:bold; color:rgb(240, 142, 142)'>The last date of the dataset is 2017-08-23. Please enter a valid start date prior to 2017-08-23.</p>
                                           </div>
                                         </div>
@@ -616,34 +598,30 @@
                                 <hr style = 'border: 1px solid #30475e'>
                                   <ul class="list-group" id="filters">
                                     <li class="filter list-group-item">
-                                      <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                      <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                       <br>
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
-                                          <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                        <div class='col-md-2'>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                          <br>
+                                          <br>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
                                           <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                          <br>
+                                          <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
                                         </div>
-                                      </div>
-                                        <br>
-                                      <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                          </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
-                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                          </div>
-                                          <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                            <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                          </div>
+                                        <div class='col-md-2'>
+                                          <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                        </div>
                                       </div>
                                       <!-- ERROR MESSAGE -->
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
+                                        <div class='col-md-2'>
                                           <p style='color:rgb(216, 76, 76)'> </p>
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+                                        <div class='col-md-7'>
                                           <p style='font-weight:bold; color:rgb(240, 142, 142)'>The last date of the dataset is 2017-08-23. Please enter a valid end date prior to 2017-08-23.</p>
                                         </div>
                                       </div>
@@ -655,27 +633,26 @@
                                 <hr style = 'border: 1px solid #30475e'>
                                   <ul class="list-group" id="filters">
                                     <li class="filter list-group-item">
-                                      <p>Enter a start and end date to see the daily maximum, minimum, and average temperatures</p>
+                                      <h3>Enter a start and end date to see the daily maximum, minimum, and average temperatures</h3>
                                       <br>
                                       <div class='row'>
-                                        <div class='col-sm-2 col-md-2 col-lg-2'>
-                                          <label id = "startDate_start_label" for="startDate_start">Start Date : </label>                            
+                                        <div class='col-md-2'>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:7px' id = "startDate_start_label" for="startDate_start">Start Date : </label>
+                                          <br>
+                                          <br>
+                                          <label  style= "font-size:20px;" style = 'margin-left:30px;margin-top:5px' id = "startDate_end_label" for="startDate_end">End Date : </label>
+              
                                         </div>
-                                        <div class='col-sm-7 col-md-7 col-lg-7'>
+              
+                                        <div class='col-md-7'>
                                           <input name = "startDate_start" class="form-control" id="startDate_start" type="text" placeholder="2014-04-01">
+                                          <br>
+                                          <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
+              
                                         </div>
-                                      </div>
-                                        <br>
-                                      <div class='row'>
-                                          <div class='col-sm-2 col-md-2 col-lg-2'>
-                                            <label id = "startDate_end_label" for="startDate_end">End Date : </label>
-                                          </div>
-                                          <div class='col-sm-7 col-md-7 col-lg-7'>
-                                            <input name = "startDate_end" class="form-control" id="startDate_end" type="text" placeholder="2017-04-01">
-                                          </div>
-                                          <div id = "filt_both" class='col-sm-2 col-md-2 col-lg-2'>
-                                            <button id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
-                                          </div>
+                                        <div class='col-md-2'>
+                                          <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button>
+                                        </div>
                                       </div>
                                       <br>
                                     </li>
@@ -707,7 +684,7 @@
         {% if precipLast12Months %}
             <div class = 'container container-fluid'>
               <div class="row justify-content-center">
-              <div class="col-sm-12 col-md-12 col-md-12" id="element_target">
+              <div class="col-md-12" id="element_target">
                 <h1 id = "currentPage" class="text-info">Dates and Precipitation Scores Per Day for the Last 12 Months</h1>
                 <br>
                 <h2 class="text-info">The the highest precipitation score occured on <span style="color:whitesmoke"> {{ highestPrecipDate }} </span>with a score of <span style="color:whitesmoke">{{ highestPrecip }} </span></h2>
@@ -753,7 +730,7 @@
         {% if stationList %}
             <div class = 'container container-fluid'>
               <div class="row justify-content-center">
-              <div class="col-sm-12 col-md-12 col-md-12" id="element_target">
+              <div class="col-md-12" id="element_target">
                 <h1 id = "currentPage" class="text-info">Stations in the Dataset</h1>
                 <br>
                 <h2 class="text-info">Statistics</h2>
@@ -792,7 +769,7 @@
       </div> -->
             <div class = 'container container-fluid'>
               <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-12 col-md-12" id="element_target">
+                <div class="col-md-12" id="element_target">
                   <h1 id = "currentPage" class="text-info">Temperature Observations (TOBS) for the Last 12 Months</h1>
                   <h2 class="text-info">Visualization </h2>
 
@@ -802,7 +779,7 @@
             </div>
             <br>
               <div class="row justify-content-center">
-              <div class="col-sm-12 col-md-12 col-md-12">
+              <div class="col-md-12">
                 <h2 class="text-info">Data </h2>
                 <!-- <h2 id = "currentPage" class="text-info">Temperature observations (TOBS) for the last 12 months : </h2> -->
                 <div id="table-area" class="">
@@ -824,7 +801,7 @@
         {% if myNormals %}
           <div class='container container-fluid'>
             <div class="row justify-content-center">
-              <div class="col-sm-12 col-md-12 col-md-12" id="element_target">
+              <div class="col-md-12" id="element_target">
                   <h1 id = "currentPage" class="text-info">Daily Normals since {{ myStart }} </h1>
                   <br>
                   <h2 class="text-info">Statistics</h2>
@@ -839,7 +816,7 @@
               <br>
                   <!-- <h2 id = "currentPage" class="text-info">Temperature observations (TOBS) for the last 12 months : </h2> -->
             <div class="row justify-content-center">
-              <div class="col-sm-12 col-md-12 col-md-12">
+              <div class="col-md-12">
                 <h2 class="text-info">Data </h2>
                   <div id="table-area" class="">
                     <table id="ufo-table" class="table table-striped">
@@ -862,7 +839,7 @@
         {% if myNormalsStartEnd %}
         <div class='container container-fluid'>
           <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-12 col-md-12" id="element_target">
+            <div class="col-md-12" id="element_target">
                 <h2 id = "currentPage" class="text-info">Daily Normals from {{ myStart }} to {{ myEnd }} </h2>
                 <br>
                   <h2 class="text-info">Statistics</h2>
@@ -877,7 +854,7 @@
             <br>
                 <!-- <h2 id = "currentPage" class="text-info">Temperature observations (TOBS) for the last 12 months : </h2> -->
           <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-12 col-md-12">
+            <div class="col-md-12">
                 <div id="table-area" class="">
                   <table id="ufo-table" class="table table-striped">
                     <thead>
@@ -903,7 +880,7 @@
     <footer class="footer">
       <div class="container">
         <div class="row">
-            <div style = "text-align: center" class="col-sm-12 col-md-12 col-lg-12">
+            <div style = "text-align: center" class="col-sm-12 col-md-12">
               <h5>Want to contribute?</h5>
               <p class="text-center"><a href="https://github.com/maivey/explore-bikeshare-data">Join the Github!</a></p>
                   <br>
