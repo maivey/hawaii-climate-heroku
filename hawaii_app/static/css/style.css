@@ -534,6 +534,29 @@ margin-top:10px
     /* margin-left:30px;
     margin-top:5px' */
   }
+  #past-year-1 {
+    text-align:center; 
+    background-color: rgb(83, 124, 172); 
+    margin:5px; 
+    height:50px;
+    border-radius: 20px;
+}
+#past-year-2 {
+    text-align:center;
+    background-color: rgb(212, 134, 134);
+    margin:5px;
+    height:50px;
+    border-radius: 20px;
+}
+
+#past-year-3 {
+    text-align:center;
+    background-color: rgb(214, 198, 129);
+    margin:5px;
+    height:50px;
+    border-radius: 20px;
+
+}
 }
 
 /********************************************************************/
@@ -628,6 +651,29 @@ margin-top:10px
     /* margin-left:30px;
     margin-top:5px' */
   }
+  #past-year-1 {
+    text-align:center; 
+    background-color: rgb(83, 124, 172); 
+    margin:5px; 
+    height:50px;
+    border-radius: 20px;
+}
+#past-year-2 {
+    text-align:center;
+    background-color: rgb(212, 134, 134);
+    margin:5px;
+    height:50px;
+    border-radius: 20px;
+}
+
+#past-year-3 {
+    text-align:center;
+    background-color: rgb(214, 198, 129);
+    margin:5px;
+    height:50px;
+    border-radius: 20px;
+
+}
 }
 
 /********************************************************************/
