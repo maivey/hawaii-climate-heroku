@@ -76,7 +76,7 @@ class Measurement(db.Model):
     __tablename__ = 'measurement'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64))
+    station = db.Column(db.String(64))
     date = db.Column(db.String(64))
     prcp = db.Column(db.Float)
     tobs= db.Column(db.Float)
