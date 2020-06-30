@@ -46,6 +46,9 @@ def check_order(start,end):
     else:
         return True
 
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Resources/hawaii.sqlite"
+# db = SQLAlchemy(app)
+
 # Database setup
 engine = create_engine("sqlite:///Resources/hawaii.sqlite")
 # reflect an existing database into a new model
@@ -55,6 +58,8 @@ Base.prepare(engine, reflect=True)
 
 Measurement = Base.classes.measurement
 Station = Base.classes.station
+
+
 
 #Flask Setup:
 app = Flask(__name__)
