@@ -257,6 +257,13 @@
   #myHeader {
     height:200px;
   }
+  .filter button {
+  /*margin-left:5px;*/
+  font-size:10px;
+}
+.nav li {
+  font-size:10px;
+}
 }
  
 
@@ -288,11 +295,11 @@
     height:200px;
   }
   .filter button {
-  margin-left:5px;
-  font-size:8px;
+  /*margin-left:5px;*/
+  font-size:10px;
 }
 .nav li {
-  font-size:1rem;
+  font-size:10px;
 }
 }
 
@@ -325,8 +332,8 @@
     height:200px;
   }
   .filter button {
-  margin-left:5px;
-  font-size:8px;
+  /*margin-left:5px;*/
+  font-size:10px;
 }
 .nav li {
   font-size:10px;
