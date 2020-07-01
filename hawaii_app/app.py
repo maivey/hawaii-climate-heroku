@@ -721,6 +721,7 @@ def rainfall(start,end):
                     .all()
     total_rain_df = pd.DataFrame(total_rain_all, columns=['Station','Name','Lat','Lon','Elevation','Total Amount of Rainfall'])
     total_rain_df['Total Amount of Rainfall']=total_rain_df['Total Amount of Rainfall'].map(lambda x: round(x,3))
+    total_rain_df['Total Amount of Rainfall'] = total_rain_df['Total Amount of Rainfall'].fillna(0)
     total_rain_dict = total_rain_df.to_dict(orient='records')
     # session.close()
     return jsonify(total_rain_dict)

@@ -674,7 +674,7 @@ else if (currentSelection.slice(0,18) === 'Daily Normals from') {
 
     });
 
-    var pastYearRainPath = "/rainfall/"+ startDate+ "/" +endDate;
+    var pastYearRainPath = "/rainfall/" + startDate + "/" + endDate
     d3.json(pastYearRainPath).then((data)=> {
         // console.log(data.map(d=> d['Station']))
         var stations = data.map(d=> d['Station'])
@@ -684,6 +684,8 @@ else if (currentSelection.slice(0,18) === 'Daily Normals from') {
         var elevation = data.map(d=> d['Elevation'])
         var rainfallAmt = data.map(d=>d['Total Amount of Rainfall'])
         console.log(stations)
+        console.log(stationName)
+        console.log(elevation)
         var tbody = d3.select("#station-rainfall").select('tbody');
         // var tbody = d3.select('tbody');
         for (var i = 0; i<stations.length; i++) {
@@ -709,7 +711,7 @@ else if (currentSelection.slice(0,18) === 'Daily Normals from') {
     }); //ENDS d3.json(pastYearRainPath).then((data)
 
 
-    var dailyRainPath = "/rainfall_last_year/" + startDate+"/"+ endDate
+    var dailyRainPath = "/rainfall_last_year/" + startDate + "/" + endDate;
     d3.json(dailyRainPath).then((data)=> {
         var test = Object.keys(data).map(function(key) {
             console.log(key)
