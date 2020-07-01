@@ -474,8 +474,8 @@ margin-top:10px
   #startDate {
     /* font-size:25px; */
     font-size:15px; 
-    margin-left:0px;
-    margin-top:5px;
+    /* margin-left:0px;
+    margin-top:5px; */
   }
 
   #startDate_start_label {
@@ -565,13 +565,13 @@ margin-top:10px
     font-size:80%;
   }
   #startDate {
-      font-size:10px;
+      font-size:15px;
   };
   #startDate_start {
-      font-size:10px;
+      font-size:15px;
   };
   #startDate_end {
-      font-size:10px;
+      font-size:15px;
   };
   /* #start_trip {
       font-size:10px;
