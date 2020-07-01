@@ -786,8 +786,10 @@ margin-top:10px
     }
   
     to {
-      font-size : 10rem;
-      /* font-size : 4.5rem; */
+      font-size: 7vw;
+      /* font-size : 4rem; */
+      /* font-size : 12rem; */
+      /* font-size : 4rem; */
       /* font-size: 16.5rem; */
       /* font-size: 0.5rem; */
       opacity: 1;
@@ -800,8 +802,10 @@ margin-top:10px
     }
   
     to {
-      /* font-size : 16.5rem; */
-      font-size : 4.5rem;
+      font-size: 7vw;
+      /* font-size:  */
+      /* font-size : 10rem; */
+      /* font-size : 4.5rem; */
       /* font-size: 16.5rem; */
       /* font-size: 0.5rem; */
       opacity: 1;
