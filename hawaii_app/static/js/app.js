@@ -707,7 +707,7 @@ else if (currentSelection.slice(0,18) === 'Daily Normals from') {
             cell.text(rainfallAmt[i].toString());
             
         };
-        tbody.selectAll('td').attr('style','font-size:15px')
+        // tbody.selectAll('td').attr('style','font-size:15px')
     }); //ENDS d3.json(pastYearRainPath).then((data)
 
 
@@ -871,7 +871,7 @@ function show_2016_Data() {
                 var cell = row.append("td");
                 cell.text(tMAXS[i].toString());
             }
-            tbody1.selectAll('td').attr('style','font-size:10px')
+            // tbody1.selectAll('td').attr('style','font-size:10px')
 
             trace1 = {
                 x: startDates.map((d,i)=> i+1),
@@ -960,7 +960,7 @@ function show_2016_Data() {
             maxs.push(temp[i][1][0][2])
             // console.log(temp[i][1][0][2])
         };
-        tbody.selectAll('td').attr('style','font-size:15px')
+        // tbody.selectAll('td').attr('style','font-size:15px')
 
         // console.log(myYears)
         // console.log(mins)
@@ -1053,7 +1053,7 @@ function show_2016_Data() {
             cell.text(rainfallAmt[i].toString());
             
         };
-        tbody.selectAll('td').attr('style','font-size:15px')
+        // tbody.selectAll('td').attr('style','font-size:15px')
     }); //ENDS d3.json(pastYearRainPath).then((data)
 
 
