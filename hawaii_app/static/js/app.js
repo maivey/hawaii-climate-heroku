@@ -39,7 +39,7 @@ if (currentSelection === 'Dates and Precipitation Scores Per Day for the Last 12
             console.log(myPrecips)
             console.log(myDates.length)
             console.log(myPrecips.length)
-            tbody.selectAll('td').attr('style','font-size:20px');
+            // tbody.selectAll('td').attr('style','font-size:15px');
             
             var trace_precips = {
                 x : myDates,
@@ -97,7 +97,7 @@ else if (currentSelection === 'Stations in the Dataset') {
         cell.text(stationCounts[i]);
     };
     
-    tbody.selectAll('td').attr('style','font-size:25px')
+    tbody.selectAll('td').attr('style','font-size:15px')
     var topStationText = "The most active station is <span style='color:whitesmoke'>"+sortedNames[0].toString() +"</span> with <span style='color:whitesmoke'>"+ stationCounts[0].toString()+" </span> counts"
     d3.select('#top_station').html(topStationText)
     // d3.select('#top_station').selectAll('p').append('p').text('hello')
@@ -180,7 +180,7 @@ else if (currentSelection === 'Temperature Observations (TOBS) for the Last 12 M
         cell.text(d[1]);
 
     });
-    tbody.selectAll('td').attr('style','font-size:20px')
+    tbody.selectAll('td').attr('style','font-size:15px')
     console.log(tobs)
     tobs.forEach((d) => {
         d[1] = +(d[1])
@@ -515,7 +515,7 @@ else if (currentSelection.slice(0,18) === 'Daily Normals from') {
                 var cell = row.append("td");
                 cell.text(tMAXS[i].toString());
             }
-            tbody1.selectAll('td').attr('style','font-size:20px')
+            tbody1.selectAll('td').attr('style','font-size:15px')
 
             // traces = [
             //     {x : startDates, y: tMINS, name : 'tMin', stackgroup:'one'},
@@ -612,7 +612,7 @@ else if (currentSelection.slice(0,18) === 'Daily Normals from') {
             maxs.push(temp[i][1][0][2])
             // console.log(temp[i][1][0][2])
         };
-        tbody.selectAll('td').attr('style','font-size:25px')
+        tbody.selectAll('td').attr('style','font-size:15px')
 
         // console.log(myYears)
         // console.log(mins)
@@ -705,7 +705,7 @@ else if (currentSelection.slice(0,18) === 'Daily Normals from') {
             cell.text(rainfallAmt[i].toString());
             
         };
-        tbody.selectAll('td').attr('style','font-size:20px')
+        tbody.selectAll('td').attr('style','font-size:15px')
     }); //ENDS d3.json(pastYearRainPath).then((data)
 
 
@@ -958,7 +958,7 @@ function show_2016_Data() {
             maxs.push(temp[i][1][0][2])
             // console.log(temp[i][1][0][2])
         };
-        tbody.selectAll('td').attr('style','font-size:25px')
+        tbody.selectAll('td').attr('style','font-size:15px')
 
         // console.log(myYears)
         // console.log(mins)
@@ -1051,7 +1051,7 @@ function show_2016_Data() {
             cell.text(rainfallAmt[i].toString());
             
         };
-        tbody.selectAll('td').attr('style','font-size:20px')
+        tbody.selectAll('td').attr('style','font-size:15px')
     }); //ENDS d3.json(pastYearRainPath).then((data)
 
 

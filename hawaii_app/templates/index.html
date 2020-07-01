@@ -9,6 +9,10 @@
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
   <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+
 
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="static/css/style.css">
@@ -18,6 +22,33 @@
   <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
  <!-- ************  END PANELS ************ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        // 480
+            if($(window).width() < 600) { 
+                $('h1').css('font-size','20px');
+                $('h2').css('font-size','18px');
+                $('h3').css('font-size','16px');
+                $('h4').css('font-size','14px');
+            }
+        });
+        // $(document).ready(function(){
+      $(window).resize(function(){
+          if($(window).width() < 600) { 
+              $('h1').css('font-size','20px');
+              $('h2').css('font-size','18px');
+              $('h3').css('font-size','16px');
+              $('h4').css('font-size','14px');
+          }
+          if($(window).width() >= 600) { 
+              $('h1').css('font-size','2em');
+              $('h2').css('font-size','1.5em');
+              $('h3').css('font-size','1.17em');
+              $('h4').css('font-size','1em');
+          }
+      });
+  </script>
   <style>
       #table-area th {
         text-align: left;
@@ -68,7 +99,7 @@
   </div>
 
   <div class="container">
-    <div class="row margin-top-50">
+    <div id = "chooseText" class="row">
       <div class="col-md-12 col-lg-12">
         <!-- <div class="container container-fluid"> -->
         <h1 id = "mainText">Choose to either explore climate data for Hawaii or get climate predictions for your trip to Hawaii below</h1>
@@ -727,19 +758,19 @@
                 <div id = 'precip_div'></div>
                 <br>
                 <h2 class="text-info">Data </h2>
-                <div id="table-area" class="">
+                <div style="border:none;" id="table-area" class="table-responsive">
                   <br>
-                  <table id="ufo-table" class="table table-striped">
+                  <table id="ufo-table" class="table table-striped table-hover">
                     <thead>
-                      <tr>
-                        <th style='font-size:25px;' class="table-head">Date</th>
-                        <th style='font-size:20px;' class="table-head">Precipitation1 [P1]</th>
-                        <th style='font-size:25px;'class="table-head"> P2</th>
-                        <th style='font-size:25px;' class="table-head"> P3</th>
-                        <th style='font-size:25px;' class="table-head"> P4</th>
-                        <th style='font-size:25px;' class="table-head"> P5</th>
-                        <th style='font-size:25px;' class="table-head"> P6</th>
-                        <th style='font-size:25px;' class="table-head"> P7</th>
+                      <tr class = "myPrecipTable">
+                        <th class="table-head">Date</th>
+                        <th class="table-head">Precipitation1<br> [P1]</th>
+                        <th class="table-head"> P2</th>
+                        <th class="table-head"> P3</th>
+                        <th class="table-head"> P4</th>
+                        <th class="table-head"> P5</th>
+                        <th class="table-head"> P6</th>
+                        <th class="table-head"> P7</th>
                       </tr>
                     </thead>
                     <tbody id = "table-body"></tbody>
@@ -768,12 +799,12 @@
                 <div id="hist_tobs"></div>
                 <br>
                 <h2 class="text-info">Data</h2>
-                <div id="table-area" class="">
+                <div style="border:none;" id="table-area" class="table-responsive">
                   <table id="ufo-table" class="table table-striped">
                     <thead>
-                      <tr>
-                        <th style='font-size:25px;' class="table-head">Station Name</th>
-                        <th style='font-size:25px;' class="table-head">Station Count</th>
+                      <tr class = "myStationTable">
+                        <th class="table-head">Station Name</th>
+                        <th class="table-head">Station Count</th>
                       </tr>
                     </thead>
                     <tbody id = "table-body"></tbody>
@@ -805,12 +836,12 @@
               <div class="col-sm-12 col-md-12 col-md-12">
                 <h2 class="text-info">Data </h2>
                 <!-- <h2 id = "currentPage" class="text-info">Temperature observations (TOBS) for the last 12 months : </h2> -->
-                <div id="table-area" class="">
+                <div style="border:none;"  id="table-area" class="table-responsive">
                   <table id="ufo-table" class="table table-striped">
                     <thead>
-                      <tr>
-                        <th style='font-size:25px;' class="table-head">Date</th>
-                        <th  style='font-size:25px;' class="table-head">Temperature (<span>&#176;</span>F)</th>
+                      <tr class="myTOBSTable">
+                        <th class="table-head">Date</th>
+                        <th class="table-head">Temperature (<span>&#176;</span>F)</th>
                       </tr>
                     </thead>
                     <tbody id = "table-body"></tbody>
@@ -841,14 +872,14 @@
             <div class="row justify-content-center">
               <div class="col-sm-12 col-md-12 col-md-12">
                 <h2 class="text-info">Data </h2>
-                  <div id="table-area" class="">
+                  <div style="border:none;" id="table-area" class="table-responsive">
                     <table id="ufo-table" class="table table-striped">
                       <thead>
-                        <tr>
-                          <th style='font-size:25px;' class="table-head">Date</th>
-                          <th  style='font-size:25px;' class="table-head">Minimum Temperature</th>
-                          <th  style='font-size:25px;' class="table-head">Average Temperature</th>
-                          <th  style='font-size:25px;' class="table-head">Maximum Temperature</th>
+                        <tr class="myStartOnlyTable">
+                          <th class="table-head">Date</th>
+                          <th class="table-head">Minimum<br>Temperature</th>
+                          <th class="table-head">Average<br>Temperature</th>
+                          <th  class="table-head">Maximum<br>Temperature</th>
                         </tr>
                       </thead>
                       <tbody id = "table-body"></tbody>
@@ -878,14 +909,14 @@
                 <!-- <h2 id = "currentPage" class="text-info">Temperature observations (TOBS) for the last 12 months : </h2> -->
           <div class="row justify-content-center">
             <div class="col-sm-12 col-md-12 col-md-12">
-                <div id="table-area" class="">
+                <div style="border:none;" id="table-area" class="table-responsive">
                   <table id="ufo-table" class="table table-striped">
                     <thead>
-                      <tr>
-                        <th style='font-size:25px;' class="table-head">Date</th>
-                        <th  style='font-size:25px;' class="table-head">Minimum Temperature</th>
-                        <th  style='font-size:25px;' class="table-head">Average Temperature</th>
-                        <th  style='font-size:25px;' class="table-head">Maximum Temperature</th>
+                      <tr class="myStartEndTable">
+                        <th class="table-head">Date</th>
+                        <th class="table-head">Minimum<br>Temperature</th>
+                        <th class="table-head">Average<br>Temperature</th>
+                        <th class="table-head">Maximum<br>Temperature</th>
                       </tr>
                     </thead>
                     <tbody id = "table-body"></tbody>

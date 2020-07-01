@@ -20,6 +20,32 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
+    $(document).ready(function(){
+      // 480
+          if($(window).width() < 600) { 
+              $('h1').css('font-size','20px');
+              $('h2').css('font-size','18px');
+              $('h3').css('font-size','16px');
+              $('h4').css('font-size','14px');
+          }
+      });
+      // $(document).ready(function(){
+    $(window).resize(function(){
+        if($(window).width() < 600) { 
+            $('h1').css('font-size','20px');
+            $('h2').css('font-size','18px');
+            $('h3').css('font-size','16px');
+            $('h4').css('font-size','14px');
+        }
+        if($(window).width() >= 600) { 
+            $('h1').css('font-size','2em');
+            $('h2').css('font-size','1.5em');
+            $('h3').css('font-size','1.17em');
+            $('h4').css('font-size','1em');
+        }
+    });
+</script>
+  <!-- <script>
       $(document).ready(function(){
             if($(window).width() < 480) { 
                 $('h1').css('font-size','20px');
@@ -28,7 +54,15 @@
                 $('h4').css('font-size','14px');
             }
         });
-  </script>
+        $(document).ready(function(){
+            if($(window).width() < 500) { 
+                $('h1').css('font-size','20px');
+                $('h2').css('font-size','18px');
+                $('h3').css('font-size','16px');
+                $('h4').css('font-size','14px');
+            }
+        });
+  </script> -->
  <!-- ************  END PANELS ************ -->
   <style>
       #table-area th {
@@ -76,7 +110,7 @@
   </div>
 
   <div class="container">
-    <div class="row margin-top-50">
+    <div id="chooseText" class="row">
       <div class="col-sm-12 col-md-12 col-lg-12">
         <h1 id = "mainText">Choose to either explore climate data for Hawaii or get climate predictions for your trip to Hawaii below</h1>
         <br>
@@ -512,7 +546,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
     
                 
-                        <h1 style = "text-align:center;background-color:#2a3747;margin-right:75%; padding:15px" class="text-info">LAST YEAR</h1>
+                    <h1 style = "text-align:center;background-color:#2a3747;margin-right:75%; padding:15px" class="text-info">LAST YEAR</h1>
     
                     <h2 id = 'past-year-dates' class = "text-info"></h2>
                     <div class='container container-fluid'>
@@ -545,14 +579,14 @@
                         <br>
                         <div class="row justify-content-center">
                             <div class="col-sm-12 col-md-12 col-lg-12">
-                                <div id="table-area" class="">
+                                <div style="border:none;" id="table-area" class="table-responsive">
                                 <table id="ufo-table" class="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th style='font-size:20px;' class="table-head">Date</th>
-                                        <th  style='font-size:20px;' class="table-head">Minimum Temperature</th>
-                                        <th  style='font-size:20px;' class="table-head">Average Temperature</th>
-                                        <th  style='font-size:20px;' class="table-head">Maximum Temperature</th>
+                                    <tr class="myPrecipTable">
+                                        <th class="table-head">Date</th>
+                                        <th class="table-head">Minimum Temperature</th>
+                                        <th class="table-head">Average Temperature</th>
+                                        <th class="table-head">Maximum Temperature</th>
                                     </tr>
                                     </thead>
                                     <tbody id = "table-body last-year"></tbody>
@@ -590,29 +624,21 @@
                         <!-- ENDS ROW JUSTIFY CONTENT CENTER-->
                         </div>
                     </div>
-                    <!-- <div class="row justify-content-center">
-                        <div class="col-lg-1 col-md-1 col-sm-1">
-                        </div>
-                        <div class="col-lg-11 col-md-11 col-sm-11">
-                        <h3 id = 'all-year-norms-1' class = "text-info"></h3>
-                        <h3 id = 'all-year-norms-2' class = "text-info"></h3>
-                        <h3 id = 'all-year-norms-3' class = "text-info"></h3>
-                        </div>
-                    </div> -->
+                    
                     <br>
     
                     <h3 class = "text-info">Here is a breakdown of the temperature normals during your trip for each year in the dataset: </h3>
                     <br>
                     <div class="row justify-content-center">
                         <div id = "by-year" class="col-sm-12 col-md-12 col-lg-12">
-                            <div id="table-area" class="">
+                            <div style="border:none;" id="table-area" class="table-responsive">
                             <table id="ufo-table" class="table table-striped">
                                 <thead>
-                                <tr>
-                                    <th style='font-size:25px;' class="table-head">Year</th>
-                                    <th  style='font-size:25px;' class="table-head">Minimum Temperature</th>
-                                    <th  style='font-size:25px;' class="table-head">Average Temperature</th>
-                                    <th  style='font-size:25px;' class="table-head">Maximum Temperature</th>
+                                <tr class="myPrecipTable">
+                                    <th class="table-head">Year</th>
+                                    <th class="table-head">Minimum Temperature</th>
+                                    <th class="table-head">Average Temperature</th>
+                                    <th class="table-head">Maximum Temperature</th>
                                 </tr>
                                 </thead>
                                 <tbody id = "table-body"></tbody>
@@ -665,18 +691,18 @@
                     <br>
                     <div class="row justify-content-center">
                     <div id = "trip-rainfall" class="col-sm-12 col-md-12 col-lg-12">
-                        <div id="table-area" class="">
+                        <div style="border:none;" id="table-area" class="table-responsive">
                             <table id="ufo-table" class="table table-striped">
                             <thead>
-                                <tr>
-                                <th style='font-size:25px;' class="table-head">Date</th>
-                                <th style='font-size:20px;' class="table-head">Precipitation1 [P1]</th>
-                                <th style='font-size:25px;'class="table-head"> P2</th>
-                                <th style='font-size:25px;' class="table-head"> P3</th>
-                                <th style='font-size:25px;' class="table-head"> P4</th>
-                                <th style='font-size:25px;' class="table-head"> P5</th>
-                                <th style='font-size:25px;' class="table-head"> P6</th>
-                                <th style='font-size:25px;' class="table-head"> P7</th>
+                                <tr class="myPrecipTable">
+                                    <th class="table-head">Date</th>
+                                    <th class="table-head">Precipitation1<br>[P1]</th>
+                                    <th class="table-head"> P2</th>
+                                    <th class="table-head"> P3</th>
+                                    <th class="table-head"> P4</th>
+                                    <th class="table-head"> P5</th>
+                                    <th class="table-head"> P6</th>
+                                    <th class="table-head"> P7</th>
                                 </tr>
                             </thead>
                             <tbody id = "table-body"></tbody>
@@ -689,16 +715,16 @@
                     <h2 class = "text-info">Total amount of rainfall per weather station for your trip dates last year</h2>
                     <div class="row justify-content-center">
                     <div id = "station-rainfall" class="col-sm-12 col-md-12 col-lg-12">
-                        <div id="table-area" class="">
+                        <div style="border:none;" id="table-area" class="table-responsive">
                             <table id="ufo-table" class="table table-striped">
                             <thead>
-                                <tr>
-                                <th style='font-size:20px;' class="table-head">Station</th>
-                                <th  style='font-size:20px;' class="table-head">Name</th>
-                                <th  style='font-size:20px;' class="table-head">Lat</th>
-                                <th  style='font-size:20px;' class="table-head">Lon</th>
-                                <th  style='font-size:20px;' class="table-head">Elevation</th>
-                                <th  style='font-size:20px;' class="table-head">Total Amount of Rainfall</th>
+                                <tr class="myPrecipTable">
+                                    <th class="table-head">Station</th>
+                                    <th class="table-head">Name</th>
+                                    <th class="table-head">Lat</th>
+                                    <th class="table-head">Lon</th>
+                                    <th class="table-head">Elevation</th>
+                                    <th class="table-head">Total Amount of Rainfall</th>
                                 </tr>
                             </thead>
                             <tbody id = "table-body"></tbody>
@@ -772,14 +798,14 @@
                       <br>
                       <div class="row justify-content-center">
                         <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div id="table-area" class="">
+                            <div style="border:none;" id="table-area" class="table-responsive">
                               <table id="ufo-table" class="table table-striped">
                                 <thead>
                                   <tr class="myTableNorms">
                                     <th class="table-head">Date</th>
-                                    <th class="table-head">Minimum Temperature</th>
-                                    <th class="table-head">Average Temperature</th>
-                                    <th class="table-head">Maximum Temperature</th>
+                                    <th class="table-head">Minimum<br>Temperature</th>
+                                    <th class="table-head">Average<br>Temperature</th>
+                                    <th class="table-head">Maximum<br>Temperature</th>
                                   </tr>
                                 </thead>
                                 <tbody id = "table-body last-year"></tbody>
@@ -824,14 +850,14 @@
                   <br>
                   <div class="row justify-content-center">
                     <div id = "by-year" class="col-sm-12 col-md-12 col-lg-12">
-                        <div id="table-area" class="">
+                        <div style="border:none;" id="table-area" class="table-responsive">
                           <table id="ufo-table" class="table table-striped">
                             <thead>
-                              <tr>
-                                <th style='font-size:25px;' class="table-head">Year</th>
-                                <th  style='font-size:25px;' class="table-head">Minimum Temperature</th>
-                                <th  style='font-size:25px;' class="table-head">Average Temperature</th>
-                                <th  style='font-size:25px;' class="table-head">Maximum Temperature</th>
+                              <tr class="myPrecipTable">
+                                <th class="table-head">Year</th>
+                                <th class="table-head">Minimum<br>Temperature</th>
+                                <th class="table-head">Average<br>Temperature</th>
+                                <th class="table-head">Maximum<br>Temperature</th>
                               </tr>
                             </thead>
                             <tbody id = "table-body"></tbody>
@@ -884,18 +910,18 @@
                 <br>
                 <div class="row justify-content-center">
                   <div id = "trip-rainfall" class="col-sm-12 col-md-12 col-lg-12">
-                      <div id="table-area" class="">
+                      <div style="border:none;" id="table-area" class="table-responsive">
                         <table id="ufo-table" class="table table-striped">
                           <thead>
-                            <tr>
-                              <th style='font-size:25px;' class="table-head">Date</th>
-                              <th style='font-size:20px;' class="table-head">Precipitation1 [P1]</th>
-                              <th style='font-size:25px;'class="table-head"> P2</th>
-                              <th style='font-size:25px;' class="table-head"> P3</th>
-                              <th style='font-size:25px;' class="table-head"> P4</th>
-                              <th style='font-size:25px;' class="table-head"> P5</th>
-                              <th style='font-size:25px;' class="table-head"> P6</th>
-                              <th style='font-size:25px;' class="table-head"> P7</th>
+                            <tr class="myPrecipTable">
+                              <th class="table-head">Date</th>
+                              <th class="table-head">Precipitation1<br>[P1]</th>
+                              <th class="table-head"> P2</th>
+                              <th class="table-head"> P3</th>
+                              <th class="table-head"> P4</th>
+                              <th class="table-head"> P5</th>
+                              <th class="table-head"> P6</th>
+                              <th class="table-head"> P7</th>
                             </tr>
                           </thead>
                           <tbody id = "table-body"></tbody>
@@ -908,16 +934,16 @@
                 <h2 class = "text-info">Total amount of rainfall per weather station for your trip dates last year</h2>
                 <div class="row justify-content-center">
                   <div id = "station-rainfall" class="col-sm-12 col-md-12 col-lg-12">
-                      <div id="table-area" class="">
+                      <div style="border:none;"  id="table-area" class="table-responsive">
                         <table id="ufo-table" class="table table-striped">
                           <thead>
-                            <tr>
-                              <th style='font-size:20px;' class="table-head">Station</th>
-                              <th  style='font-size:20px;' class="table-head">Name</th>
-                              <th  style='font-size:20px;' class="table-head">Lat</th>
-                              <th  style='font-size:20px;' class="table-head">Lon</th>
-                              <th  style='font-size:20px;' class="table-head">Elevation</th>
-                              <th  style='font-size:20px;' class="table-head">Total Amount of Rainfall</th>
+                            <tr class="myPrecipTable">
+                              <th class="table-head">Station</th>
+                              <th class="table-head">Name</th>
+                              <th class="table-head">Lat</th>
+                              <th class="table-head">Lon</th>
+                              <th class="table-head">Elevation</th>
+                              <th class="table-head">Total Amount of Rainfall</th>
                             </tr>
                           </thead>
                           <tbody id = "table-body"></tbody>

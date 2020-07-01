@@ -241,6 +241,30 @@ margin-top:10px
 .myTableNorms th {
   font-size:15px;
 }
+
+.myPrecipTable th {
+  font-size:15px;
+  word-wrap: break-word;
+}
+.myStationTable th {
+  font-size:15px;
+}
+.myTOBSTable th {
+  font-size:15px;
+}
+.myStartOnlyTable th {
+  font-size:15px;
+}
+.myStartEndTable th {
+  font-size:15px;
+}
+#chooseText {
+  margin-top:40px;
+}
+/* .myPrecipTable td {
+  font-size:15px;
+  /* word-wrap: break-word; */
+/* }  */
 /* <button style= "margin-top:25px; margin-left:50px; font-size:20px;" id="filter-btn" type="submit" class="btn btn-default" name = "btn" value = "startDate_start">Filter Search</button> */
 
 
@@ -345,6 +369,32 @@ margin-top:10px
       font-size:80%;
       margin-left:0px;
     }
+    #past-year-1 {
+      text-align:center; 
+      background-color: rgb(83, 124, 172); 
+      margin:5px; 
+      /* padding:5px; */
+      height:75px;
+      border-radius: 20px;
+  }
+  #past-year-2 {
+      text-align:center;
+      background-color: rgb(212, 134, 134);
+      margin:5px;
+      /* padding:5px; */
+      height:75px;
+      border-radius: 20px;
+  }
+  
+  #past-year-3 {
+      text-align:center;
+      background-color: rgb(214, 198, 129);
+      margin:5px;
+      /* padding:5px; */
+      height:75px;
+      border-radius: 20px;
+  
+  }
 
 }
 /********************************************************************/
@@ -444,6 +494,29 @@ margin-top:10px
     font-size:80%;
     margin-left:0px;
   }
+  #past-year-1 {
+    text-align:center; 
+    background-color: rgb(83, 124, 172); 
+    margin:5px; 
+    height:50px;
+    border-radius: 20px;
+}
+#past-year-2 {
+    text-align:center;
+    background-color: rgb(212, 134, 134);
+    margin:5px;
+    height:50px;
+    border-radius: 20px;
+}
+
+#past-year-3 {
+    text-align:center;
+    background-color: rgb(214, 198, 129);
+    margin:5px;
+    height:50px;
+    border-radius: 20px;
+
+}
 
 }
  
@@ -562,6 +635,9 @@ margin-top:10px
     border-radius: 20px;
 
 }
+#chooseText {
+  margin-top:20px;
+}
 }
 
 /********************************************************************/
@@ -679,6 +755,9 @@ margin-top:10px
     border-radius: 20px;
 
 }
+#chooseText {
+  margin-top:20px;
+}
 }
 
 /********************************************************************/
@@ -715,8 +794,8 @@ margin-top:10px
     }
   
     to {
-      font-size : 16.5rem;
-      /* font-size : 4.5rem; */
+      /* font-size : 16.5rem; */
+      font-size : 4.5rem;
       /* font-size: 16.5rem; */
       /* font-size: 0.5rem; */
       opacity: 1;
